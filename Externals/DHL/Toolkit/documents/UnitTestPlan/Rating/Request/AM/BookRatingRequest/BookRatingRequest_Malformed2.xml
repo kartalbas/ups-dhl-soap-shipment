@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<req:ShipmentBookRatingRequest xmlns:req="http://www.dhl.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.dhl.com ship-book-rate-req.xsd">
+ 	<Request>
+		<ServiceHeader>
+			<MessageTime>2001-12-17T09:30:47-05:00</MessageTime>
+			<MessageReference>123456789012345678901234567890</MessageReference>
+			<SiteID>customerSiteId</SiteID>
+			<Password>customerPassword</Password>
+		</ServiceHeader>
+	</Request>
+	<Shipper>
+		<City>San Mateo</City>
+		<Division>California</Division>
+		<PostalCode>94404</PostalCode>
+		<CountryCode>US</CountryCode>
+	</Shipper>
+	<Consignee>
+		<City>Phoenix</City>
+		<Division>Arizona</Division>
+		<PostalCode>85008</PostalCode>
+		<CountryCode>US</CountryCode>
+	</Consignee>
+	<ShipmentDetails>
+		<NumberOfPieces>2</NumberOfPieces>
+		<Pieces>
+			<Piece>
+				<PieceID>1</PieceID>
+				<PackageType>EE</PackageType>
+				<Weight>25</Weight>
+				<DimWeight>25</DimWeight>
+				<Width>2</Width>
+				<Height>2</Height>
+				<Depth>2</Depth>
+			</Piece>
+			<Piece>
+				<PieceID>2</PieceID>
+				<PackageType>EE</PackageType>
+				<Weight>0.5</Weight>
+				<DimWeight>0.5</DimWeight>
+				<Width>2</Width>
+				<Height>2</Height>
+				<Depth>2</Depth>
+			</Piece>
+		<WeightUnit>L</WeightUnit>
+		<DimensionUnit>I</DimensionUnit>
+		<Weight>99.9</Weight>
+		<GlobalProductCode>D</GlobalProductCode>
+	</ShipmentDetails>	
+</req:ShipmentBookRatingRequest>

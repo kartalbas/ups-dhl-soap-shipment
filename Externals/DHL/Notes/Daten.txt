@@ -1,0 +1,37 @@
+Windows Live Account
+>user	:	wegatrade@outlook.com
+>password:	wegaDE2013
+
+Team Foundation Server
+https://wegatrade.visualstudio.com
+
+Local Maped Folder:
+D:\Projects
+
+entwickler.dhl.de
+ mk@simetrix.ch
+ WegacellDE01!
+
+5556
+51103
+
+
+Selam Mehmet
+
+bugün gösterdigin gibi  bazi belegart larda trackingnummer bulunmuyor. Sebebi de söyle izah edilir:
+
+UPS Modulunun cagri shekli bilindigi gibi böyle dir:
+C:\UPS_ShippingModule\UPS_ShippingModule.exe BELEGNUMMER ANZAHL_PAKETE
+Ne zaman internet üzere UPS den Trackingnummer alindi bu BELEGNUMMER ile bulunan satirdaki Trackingnumbers a kayit edilir.
+
+yani su emir:
+
+UPDATE belege WHERE belegnummer=BELEGNUMMER SET Trackingnumbers='trackingnumber1,trackingnumber2,..'
+
+Belegart (Bestellung, Lieferschein, Rechnung etc..) aralarinda fark etmiyor, Belegnummer neyse kayit oraya dir.
+
+Mit freundlichen Grüssen / Best Regards
+Mehmet Kartalbas
+
+
+D:\Projects\Wegatrade\WegaShipment\ShipmentModule\bin\Debug\ShipmentModule.exe PRINT 24.11.2015 24.12.2015

@@ -1,0 +1,11 @@
+Set xml_HTTP = CreateObject("MSXML2.XMLHTTP") 'Objekt erstellen
+Set xml_Doc_A = CreateObject("MSXML2.DOMDocument") 'Objekt erstellen
+xml_Doc_A.Load("ShipRequest.XML")
+
+' xml_HTTP.Open "POST", "https://onlinetools.ups.com/webservices/Ship", false 'produktiv
+xml_HTTP.Open "POST", "https://wwwcie.ups.com/webservices/Ship", false 'test
+xml_HTTP.setRequestHeader "Content-Type", "application/x-www-form-urlencoded"
+xml_HTTP.send xml_Doc_A.XML
+xml_HTTP.responseXML.Save("testShipRespons.xml")
+
+msgbox "OK"

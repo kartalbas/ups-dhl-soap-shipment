@@ -1,0 +1,17 @@
+Wegatrade UPS Developer
+
+https://www.ups.com/one-to-one/login
+
+User ID			:	26939V
+Password			:	Wegatrade13
+-----------------------------------
+STAGE				:	8C8FDE8E6E0D5830
+-----------------------------------
+Standortfinder - Paket
+Abholung - Paket
+Versand - Paket
+-----------------------------------
+PROD				:	AC90053882A02A50
+Locator - Package
+Pickup - Package
+Shipping - Package

@@ -1,0 +1,51 @@
+
+https://cig.dhl.de/cig-wsdls/com/dpdhl/wsdl/geschaeftskundenversand-api/1.0/geschaeftskundenversand-api-1.0.wsdl.
+
+******************************* Authentication
+https://entwickler.dhl.de/group/ep/authentifizierung
+
+**Für Test und Entwicklung (Sandbox) nutzen Sie folgende Endpunkte:
+SOAP Services: https://cig.dhl.de/services/sandbox/soap
+REST Services: https://cig.dhl.de/services/sandbox/rest
+
+**Für die produktive Nutzung nach der Freigabe nutzen Sie foglende Endpunkte:
+SOAP Services: https://cig.dhl.de/services/production/soap
+REST Services: https://cig.dhl.de/services/production/rest
+
+**Authentication
+
+*Sandbox
+Benutzername: EntwickerID = kartalbas
+Passwort: Entwicklerportal Passwort
+
+Die EntwicklerID finden Sie unter "Mein Konto" (einfach Ihren Namen oben rechts anklicken). Als Passwort verwenden Sie das Passwort mit dem Sie sich am Entwicklerportal angemeldet haben.
+
+*Produktion
+Benutzername: ApplikationsID
+Passwort: Applikationstoken
+
+Für den produktiven Zugriff benötigen Sie eine ApplikationsID und ein Applikationstoken. Diese können Sie sich nach der Freigabe ihrer Applikation zur Produktiven Nutzung unter "Meine Applikationen" anzeigen bzw. generieren.
+
+******************************* Webservice 
+https://entwickler.dhl.de/group/ep/geschaeftskundenversand/authentifizierung
+
+Testmodus / Sandbox
+
+Für die Nutzung der Geschäftskundenversand Test-API benötigen Sie zunächst die CIG-Authentifizierung Ihrer Applikation im Testmodus. Nähere Details finden Sie unter https://entwickler.dhl.de/group/ep/authentifizierung
+
+Im Webservice müssen zudem noch die folgenden Credentials angegeben werden:
+
+User: geschaeftskunden_api
+Signature: Dhl_ep_test1
+EKP: 5000000000
+
+Produktion
+
+Für die Nutzung der Geschäftskundenversand Produktions-API benötigen Sie zunächst die CIG-Authentifizierung Ihrer Applikation im Produktivmodus. Nähere Details finden Sie unter https://entwickler.dhl.de/group/ep/authentifizierung
+
+Im Webservice müssen zudem folgende Zugangsdaten angegeben werden:
+
+User: wegatrade
+Signature: $SimWeg@!3
+EKP: gültige DHL Kundennummer
+

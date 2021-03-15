@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+<Header>
+  <UPSSecurity xmlns="http://www.ups.com/XMLSchema/XOLTWS/UPSS/v1.0">
+    <UsernameToken>
+      <Username>???</Username>
+      <Password>???</Password>
+    </UsernameToken>
+    <ServiceAccessToken>
+      <AccessLicenseNumber>???</AccessLicenseNumber>
+    </ServiceAccessToken>
+  </UPSSecurity> 
+</Header>
+<Body>
+
+<ShipmentRequest xmlns="http://www.ups.com/XMLSchema/XOLTWS/Ship/v1.0">
+  <Request xmlns="http://www.ups.com/XMLSchema/XOLTWS/Common/v1.0">
+    <RequestOption>nonvalidate</RequestOption>
+    <TransactionReference />
+  </Request>
+  <Shipment>
+    <Description>ShipmentRequest</Description>
+
+    <Shipper>
+      <Name>Shipper Name</Name>
+      <AttentionName>Attention Name</AttentionName>
+      <Phone>
+        <Number>0123456789</Number>
+      </Phone>
+      <!-- <AccountNumber>0A4190</AccountNumber> -->
+      <ShipperNumber>977965</ShipperNumber>
+      
+      <Address>
+        <AddressLine>AddressLine 1</AddressLine>
+        <AddressLine>AddressLine 2</AddressLine>
+        <AddressLine>AddressLine 3</AddressLine>
+        <City>BERLIN</City>
+        <PostalCode>10117</PostalCode>
+        <CountryCode>DE</CountryCode>
+      </Address>
+    </Shipper>
+
+    <ShipTo>
+      <Name>Ship To Name</Name>
+      <AttentionName>Ship To Attention Name</AttentionName>
+      <Phone>
+        <Number>0000000000</Number>
+      </Phone>
+      <Address>
+        <AddressLine>Ship To AddressLine 1</AddressLine>
+        <AddressLine>Ship To AddressLine 2</AddressLine>
+        <AddressLine>Ship To AddressLine 3</AddressLine>
+        <City>NEW YORK</City>
+        <PostalCode>10100</PostalCode>
+        <CountryCode>US</CountryCode>
+		<StateProvinceCode>NY</StateProvinceCode>
+      </Address>
+    </ShipTo>
+
+    <PaymentInformation>
+      <ShipmentCharge>
+        <Type>01</Type>
+        <BillShipper>
+          <!-- <AccountNumber>0A4190</AccountNumber> -->
+          <AccountNumber>977965</AccountNumber>
+        </BillShipper>
+      </ShipmentCharge>
+    </PaymentInformation>
+
+    <Service>
+      <Code>65</Code>
+      <Description>Express Saver</Description>
+    </Service>
+		<ReferenceNumber>
+			<BarCodeIndicator> 1 </BarCodeIndicator>
+			<Value>0123456789</Value>
+		</ReferenceNumber>
+  <Package>
+      <Description>TEST</Description>
+      <Packaging>
+        <Code>02</Code>
+        <Description>Package</Description>
+      </Packaging>
+      <PackageWeight>
+        <UnitOfMeasurement>
+          <Code>KGS</Code>
+          <Description>KG</Description>
+        </UnitOfMeasurement>
+        <Weight>10</Weight>
+      </PackageWeight>
+	 </Package>
+  </Shipment>
+
+  <LabelSpecification>
+    <LabelImageFormat>
+      <Code>GIF</Code>
+    </LabelImageFormat>
+  </LabelSpecification>
+
+  </ShipmentRequest>
+
+</Body>
+</Envelope>

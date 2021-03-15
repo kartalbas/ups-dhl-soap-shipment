@@ -1,0 +1,13 @@
+﻿
+Login		: https://www.ups.com/one-to-one/login
+
+WEGATRADE:
+ User ID		: 26939V
+ Password	: Wegatrade13
+
+WEGACELL:
+ username: 99F48Y
+ Passsword: UpsShipment2016!
+ PROD :	9D15E95CB48A390E
+
+	  

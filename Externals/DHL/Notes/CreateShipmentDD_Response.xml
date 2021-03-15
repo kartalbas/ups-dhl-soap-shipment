@@ -1,0 +1,30 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+   <SOAP-ENV:Header xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"/>
+   <soap:Body>
+      <ns4:CreateShipmentResponse xmlns:ns4="http://de.ws.intraship">
+         <Version xmlns="http://dhl.de/webservice/cisbase">
+            <majorRelease>1</majorRelease>
+            <minorRelease>0</minorRelease>
+            <build>14</build>
+         </Version>
+         <status>
+            <StatusCode>0</StatusCode>
+            <StatusMessage>ok</StatusMessage>
+         </status>
+         <CreationState>
+            <StatusCode>0</StatusCode>
+            <StatusMessage>ok</StatusMessage>
+            <SequenceNumber>1</SequenceNumber>
+            <ShipmentNumber>
+               <ns1:shipmentNumber xmlns:ns1="http://dhl.de/webservice/cisbase">00340433836008823867</ns1:shipmentNumber>
+            </ShipmentNumber>
+            <PieceInformation>
+               <PieceNumber>
+                  <ns1:licensePlate xmlns:ns1="http://dhl.de/webservice/cisbase">00340433836008823867</ns1:licensePlate>
+               </PieceNumber>
+            </PieceInformation>
+            <Labelurl>http://test-intraship.dhl.com:80/cartridge.61/WSPrint?code=0B9B4BCF3340FF9B6576D162AFF10C66DCC23BCD19498036</Labelurl>
+         </CreationState>
+      </ns4:CreateShipmentResponse>
+   </soap:Body>
+</soap:Envelope>

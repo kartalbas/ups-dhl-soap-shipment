@@ -1,0 +1,121 @@
+<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
+  <S:Header>
+    <UPSSecurity xmlns="http://www.ups.com/XMLSchema/XOLTWS/UPSS/v1.0" xmlns:ns2="http://www.ups.com/XMLSchema/XOLTWS/Common/v1.0"
+      xmlns:ns3="http://www.ups.com/XMLSchema/XOLTWS/Ship/v1.0" xmlns:ns4="http://www.ups.com/XMLSchema/XOLTWS/IF/v1.0"
+      xmlns:ns5="http://www.ups.com/XMLSchema/XOLTWS/Error/v1.1"
+    >
+      <UsernameToken>
+        <Username>UserID</Username>
+        <Password>Passw</Password>
+      </UsernameToken>
+      <ServiceAccessToken>
+        <AccessLicenseNumber>5Cxxxxxxxx....</AccessLicenseNumber>
+      </ServiceAccessToken>
+    </UPSSecurity>
+  </S:Header>
+  <S:Body>
+    <ns3:ShipmentRequest xmlns="http://www.ups.com/XMLSchema/XOLTWS/UPSS/v1.0"
+      xmlns:ns2="http://www.ups.com/XMLSchema/XOLTWS/Common/v1.0" xmlns:ns3="http://www.ups.com/XMLSchema/XOLTWS/Ship/v1.0"
+      xmlns:ns4="http://www.ups.com/XMLSchema/XOLTWS/IF/v1.0" xmlns:ns5="http://www.ups.com/XMLSchema/XOLTWS/Error/v1.1"
+    >
+      <ns2:Request>
+        <ns2:RequestOption>nonvalidate</ns2:RequestOption>
+        <ns2:TransactionReference>
+          <ns2:CustomerContext>200000064</ns2:CustomerContext>
+        </ns2:TransactionReference>
+      </ns2:Request>
+      <ns3:Shipment>
+        <ns3:Description>ShipmentRequest</ns3:Description>
+        <ns3:Shipper>
+          <ns3:Name>Emos UG (TEST)</ns3:Name>
+          <ns3:AttentionName>Andy Puderbach</ns3:AttentionName>
+          <ns3:TaxIdentificationNumber>0123456789</ns3:TaxIdentificationNumber>
+          <ns3:Phone>
+            <ns3:Number>0231 12345678</ns3:Number>
+          </ns3:Phone>
+          <ns3:ShipperNumber>0A0687</ns3:ShipperNumber>
+          <ns3:Address xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns3:ShipToAddressType">
+            <ns3:AddressLine>Bochumerstr. 100</ns3:AddressLine>
+            <ns3:City>Recklinghausen</ns3:City>
+            <ns3:PostalCode>45661</ns3:PostalCode>
+            <ns3:CountryCode>DE</ns3:CountryCode>
+          </ns3:Address>
+        </ns3:Shipper>
+        <ns3:ShipTo>
+          <ns3:Name>REturn User</ns3:Name>
+          <ns3:AttentionName>REturn User</ns3:AttentionName>
+          <ns3:TaxIdentificationNumber />
+          <ns3:Phone>
+            <ns3:Number>1309183091283</ns3:Number>
+          </ns3:Phone>
+          <ns3:EMailAddress>demo-return@ybm-deutschland.de</ns3:EMailAddress>
+          <ns3:Address>
+            <ns3:AddressLine>Somewhere 1</ns3:AddressLine>
+            <ns3:City>Aachen</ns3:City>
+            <ns3:PostalCode>12345</ns3:PostalCode>
+            <ns3:CountryCode>DE</ns3:CountryCode>
+          </ns3:Address>
+        </ns3:ShipTo>
+        <ns3:PaymentInformation>
+          <ns3:ShipmentCharge>
+            <ns3:Type>01</ns3:Type>
+            <ns3:BillShipper>
+              <ns3:AccountNumber>0A0687</ns3:AccountNumber>
+            </ns3:BillShipper>
+          </ns3:ShipmentCharge>
+        </ns3:PaymentInformation>
+        <ns3:ShipmentRatingOptions>
+          <ns3:NegotiatedRatesIndicator>Y</ns3:NegotiatedRatesIndicator>
+        </ns3:ShipmentRatingOptions>
+        <ns3:Service>
+          <ns3:Code>11</ns3:Code>
+		  <ns3:Description>Standard</ns3:Description>
+        </ns3:Service>
+        <ns3:ShipmentServiceOptions>
+          
+		  <ns3:COD>
+			<ns3:CODFundsCode>9</ns3:CODFundsCode>
+		    <ns3:CODAmount>
+              <ns3:CurrencyCode>EUR</ns3:CurrencyCode>
+              <ns3:MonetaryValue>349.98</ns3:MonetaryValue>
+            </ns3:CODAmount>
+		   </ns3:COD> 
+        
+		<ns3:Notification>
+            <ns3:NotificationCode>6</ns3:NotificationCode>
+            <ns3:EMail>
+              <ns3:EMailAddress>demo-return@ybm-deutschland.de</ns3:EMailAddress>
+              <ns3:FromEMailAddress>Info@emoselling.de</ns3:FromEMailAddress>
+            </ns3:EMail>
+          </ns3:Notification>
+        </ns3:ShipmentServiceOptions>  
+        <ns3:Package>
+          <ns3:Packaging>
+            <ns3:Code>02</ns3:Code>
+            <ns3:Description>Customer supplied package.</ns3:Description>
+          </ns3:Packaging>
+          <ns3:Dimensions>
+            <ns3:UnitOfMeasurement>
+              <ns3:Code>CM</ns3:Code>
+            </ns3:UnitOfMeasurement>
+            <ns3:Length>10</ns3:Length>
+            <ns3:Width>10</ns3:Width>
+            <ns3:Height>10</ns3:Height>
+          </ns3:Dimensions>
+          <ns3:PackageWeight>
+            <ns3:UnitOfMeasurement>
+              <ns3:Code>KGS</ns3:Code>
+            </ns3:UnitOfMeasurement>
+            <ns3:Weight>3.24</ns3:Weight>
+          </ns3:PackageWeight>
+        </ns3:Package>
+      </ns3:Shipment>
+      <ns3:LabelSpecification>
+        <ns3:LabelImageFormat>
+          <ns3:Code>GIF</ns3:Code>
+        </ns3:LabelImageFormat>
+       
+      </ns3:LabelSpecification>
+    </ns3:ShipmentRequest>
+  </S:Body>
+</S:Envelope>

@@ -1,0 +1,279 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ShipmentLib.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="LaserPrinter" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">HP200</Value>
+    </Setting>
+    <Setting Name="LabelPrinter" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">HP200</Value>
+    </Setting>
+    <Setting Name="PackageTypeCode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">02</Value>
+    </Setting>
+    <Setting Name="ServiceNotificationCode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">06</Value>
+    </Setting>
+    <Setting Name="ServiceDescription" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Mobilfunkzubehör</Value>
+    </Setting>
+    <Setting Name="CODAmountCurrencyCode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">EUR</Value>
+    </Setting>
+    <Setting Name="ShipUnitOfMeasurementTypeCode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">KGS</Value>
+    </Setting>
+    <Setting Name="ShipUnitOfMeasurementTypeDescription" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">KG</Value>
+    </Setting>
+    <Setting Name="LabelImageFormatCode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">EPL</Value>
+    </Setting>
+    <Setting Name="LabelStockSizeHeight" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">6</Value>
+    </Setting>
+    <Setting Name="LabelStockSizeWidth" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">4</Value>
+    </Setting>
+    <Setting Name="ShipperName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Wegatrade GmbH</Value>
+    </Setting>
+    <Setting Name="ShipperAttentionName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Mustafa Uyulan</Value>
+    </Setting>
+    <Setting Name="ShipperAddressLine" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Piepersberg 23</Value>
+    </Setting>
+    <Setting Name="ShipperCountryCode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">DE</Value>
+    </Setting>
+    <Setting Name="ShipperPhoneNumber" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">+492126450100</Value>
+    </Setting>
+    <Setting Name="ShipperStateProvinceCode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ShipperEmail" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">info@wegatrade.de</Value>
+    </Setting>
+    <Setting Name="ShipperFromName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Wegatrade GmbH</Value>
+    </Setting>
+    <Setting Name="ShipperFromAttentionName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Mustafa Uyulan</Value>
+    </Setting>
+    <Setting Name="ShipperFromAddressLine" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Piepersberg 23</Value>
+    </Setting>
+    <Setting Name="ShipperFromPostalCode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">42653</Value>
+    </Setting>
+    <Setting Name="ShipperFromCity" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Solingen</Value>
+    </Setting>
+    <Setting Name="ShipperFromCountryCode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">DE</Value>
+    </Setting>
+    <Setting Name="ShipperFromPhoneNumber" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">+492126450100</Value>
+    </Setting>
+    <Setting Name="ShipperFromStateProvinceCode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ShipperFromEmail" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">info@wegatrade.de</Value>
+    </Setting>
+    <Setting Name="ShipperCity" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Solingen</Value>
+    </Setting>
+    <Setting Name="ShipperPostalCode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">42653</Value>
+    </Setting>
+    <Setting Name="ShipmentChargeType" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">01</Value>
+    </Setting>
+    <Setting Name="ShipmentDescription" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ShipmentRequest</Value>
+    </Setting>
+    <Setting Name="PrintBarcode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="UPS_ShippingModule_ShipWebReference_ShipService_Test" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://wwwcie.ups.com/webservices/Ship</Value>
+    </Setting>
+    <Setting Name="LLPreview" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="PrintTurnIn" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="UPS_ShippingModule_VoidWebReference_VoidService_Test" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://wwwcie.ups.com/webservices/Void</Value>
+    </Setting>
+    <Setting Name="OpenNotepadOnException" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="Retries" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
+    <Setting Name="DownloadFolder" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">D:\Projects\Wegatrade\WegaShipment\ShipmentModule\bin\Debug\Downloads</Value>
+    </Setting>
+    <Setting Name="LogFolder" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">D:\Projects\Wegatrade\WegaShipment\ShipmentModule\bin\Debug\Log</Value>
+    </Setting>
+    <Setting Name="FileLLHtml" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">D:\Projects\Wegatrade\WegaShipment\ShipmentModule\bin\Debug\Reports\PrintHtml.lst</Value>
+    </Setting>
+    <Setting Name="FileLLSummaryUPS" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">D:\Projects\Wegatrade\WegaShipment\ShipmentModule\bin\Debug\Reports\PrintSummaryUPS.lst</Value>
+    </Setting>
+    <Setting Name="DHL_ShippingModule_ShipWebReference_ShipService_Test" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://cig.dhl.de/services/sandbox/soap</Value>
+    </Setting>
+    <Setting Name="UPS_AccessLicenseNumber" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">8C8FDE8E6E0D5830</Value>
+    </Setting>
+    <Setting Name="UPS_Username" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">26939V</Value>
+    </Setting>
+    <Setting Name="UPS_Password" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Wegatrade13</Value>
+    </Setting>
+    <Setting Name="DHL_IntraShipUser" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">geschaeftskunden_api</Value>
+    </Setting>
+    <Setting Name="DHL_IntraShipPassword" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Dhl_ep_test1</Value>
+    </Setting>
+    <Setting Name="DHL_CigUser" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">wegatrade</Value>
+    </Setting>
+    <Setting Name="DHL_CigPassword" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">$SimWeg@!3</Value>
+    </Setting>
+    <Setting Name="ShipperStreet" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Piepersberg</Value>
+    </Setting>
+    <Setting Name="ShipperStreetNr" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">23</Value>
+    </Setting>
+    <Setting Name="DHL_EKP_Prod" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">6105760911</Value>
+    </Setting>
+    <Setting Name="Shipper_VATID" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">DE814263581</Value>
+    </Setting>
+    <Setting Name="DHL_ShippingModule_ShipWebReference_ShipService_Prod" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://cig.dhl.de/services/production/soap</Value>
+    </Setting>
+    <Setting Name="DHL_EKP_Test" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">5000000008</Value>
+    </Setting>
+    <Setting Name="DHL_Username" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">mk@simetrix.eu</Value>
+    </Setting>
+    <Setting Name="DHL_ApplicationsID" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ShipmentModule_2</Value>
+    </Setting>
+    <Setting Name="DHL_Applicationstoken" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Vqyv6bvCqmbUz58Ctf2uxprAvbaU4M</Value>
+    </Setting>
+    <Setting Name="ShipperAccountOwner" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Wegatrade GmbH</Value>
+    </Setting>
+    <Setting Name="ShipperAccountNumber" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">017087801</Value>
+    </Setting>
+    <Setting Name="ShipperBankCode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">34270024</Value>
+    </Setting>
+    <Setting Name="ShipperBankName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Deutsche Bank AG Solingen</Value>
+    </Setting>
+    <Setting Name="ShipperIban" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">DE71342700240017087801</Value>
+    </Setting>
+    <Setting Name="ShipperBic" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">DEUTDEDB342</Value>
+    </Setting>
+    <Setting Name="DHL_TestMode" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="Paket_Length" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">40</Value>
+    </Setting>
+    <Setting Name="Paket_Width" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
+    <Setting Name="Paket_Height" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">22</Value>
+    </Setting>
+    <Setting Name="FileLLPdf" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">D:\Projects\Wegatrade\WegaShipment\ShipmentModule\bin\Debug\Reports\PrintPdf.lst</Value>
+    </Setting>
+    <Setting Name="DatabaseCulture" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">de-DE</Value>
+    </Setting>
+    <Setting Name="DHL_PDF_Filename" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">dhl.pdf</Value>
+    </Setting>
+    <Setting Name="DHL_PartnerID" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">01</Value>
+    </Setting>
+    <Setting Name="DHL_ExportDocument_Filename" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">expdoc.pdf</Value>
+    </Setting>
+    <Setting Name="FileLLExportDocumentPdf" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">D:\Projects\Wegatrade\WegaShipment\ShipmentModule\bin\Debug\Reports\PrintExportDocPdf.lst</Value>
+    </Setting>
+    <Setting Name="UPS_ShippingModule_ShipWebReference_ShipService_Prod" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://onlinetools.ups.com/webservices/Ship</Value>
+    </Setting>
+    <Setting Name="UPS_ShippingModule_VoidWebReference_VoidService_Prod" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://onlinetools.ups.com/webservices/Void</Value>
+    </Setting>
+    <Setting Name="UPS_TestMode" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="FileLLPic" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">D:\Projects\Wegatrade\WegaShipment\ShipmentModule\bin\Debug\Reports\PrintPic.lst</Value>
+    </Setting>
+    <Setting Name="LLLicenseInfo" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">0rTJDg</Value>
+    </Setting>
+    <Setting Name="LLDesign" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="FileLLListUPS" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">D:\Projects\Wegatrade\WegaShipment\ShipmentModule\bin\Debug\Reports\PrintListUPS.lst</Value>
+    </Setting>
+    <Setting Name="FileLLListDHL" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">D:\Projects\Wegatrade\WegaShipment\ShipmentModule\bin\Debug\Reports\PrintListDHL.lst</Value>
+    </Setting>
+    <Setting Name="FileLLSummaryDHL" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">D:\Projects\Wegatrade\WegaShipment\ShipmentModule\bin\Debug\Reports\PrintSummaryDHL.lst</Value>
+    </Setting>
+    <Setting Name="DHL_Manifest_Filename" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">manifest.pdf</Value>
+    </Setting>
+    <Setting Name="FileLLManifestedDHL" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">D:\Projects\Wegatrade\WegaShipment\ShipmentModule\bin\Debug\Reports\PrintManifestedDHL.lst</Value>
+    </Setting>
+    <Setting Name="DHL_PartnerCode_NAT" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">03</Value>
+    </Setting>
+    <Setting Name="DHL_PartnerCode_INT" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">02</Value>
+    </Setting>
+    <Setting Name="DHL_PartnerCode_BP_INT" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">02</Value>
+    </Setting>
+    <Setting Name="DHL_PartnerCode_TestMode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">01</Value>
+    </Setting>
+    <Setting Name="PauschalBetrag" Type="System.Double" Scope="Application">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
