@@ -76,7 +76,7 @@ namespace ShipmentDHL
 
                         for(int iUrl=0; iUrl < objResponse.CreationState.Length; iUrl++)
                         {
-                            string strLabelUrl = objResponse.CreationState[iUrl].Labelurl;
+                            string strLabelUrl = objResponse.CreationState[iUrl].LabelData.Item;
                             string strFile = Path.Combine(SettingController.DownloadFolder, iUrl.ToString() + "_" + _objShipment.Trackingnumber + "_" + SettingController.DHL_PDF_Filename);
                             ShipmentTools.Download(strLabelUrl, strFile);
                             _objShipment.DownloadedFiles.Add(strFile);
