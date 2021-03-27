@@ -16,8 +16,6 @@ namespace ShipmentDHL
         private Shipment _objShipment;
         private DatabaseController _objDbController;
         private PrintListLabel _objLL = new PrintListLabel();
-        private ShipmentRequestBuilderOld _oldShipmentRequestBuilder;
-        private ShipmentRequestBuilderNew _newShipmentRequestBuilder;
 
         private string componentName;
         private bool isTraceRequestEnabled;
@@ -58,7 +56,6 @@ namespace ShipmentDHL
             Logger.Instance.Log(TraceEventType.Information, 0, _strAssembly + ":" + strMethod + ": Command = " + strCmd);
             Logger.Instance.Log(TraceEventType.Error, 0, _strAssembly + ":" + strMethod + ": Executing Request in Test Mode? : " + SettingController.DHL_TestMode.ToString());
 
-            _oldShipmentRequestBuilder = new ShipmentRequestBuilderOld(_objDbController, _objShipment);
             _objDbController = new DatabaseController();
 
             if (!_objShipment.ExecutedByShipmentTests)
@@ -152,6 +149,34 @@ namespace ShipmentDHL
 
         }
 
+        private void CreateShipment(bool oldVersion)
+        {
+            string strMethod = MethodBase.GetCurrentMethod().Name;
+
+            try
+            {
+                var result = false;
+                if (oldVersion)
+                {
+                    result = new ShipmentRequestBuilderOld(_objDbController, _objShipment).CreateShipment();
+                }
+                else
+                {
+                    result = new ShipmentRequestBuilderNew(_objDbController, _objShipment).CreateShipment();
+                }
+
+                if (result)
+                {
+                    Logger.Instance.Log(TraceEventType.Information, 0, _strAssembly + ":" + strMethod + ": Printing labels ...");
+                    PrintLabels();
+                }
+            }
+            catch (Exception)
+            {
+                if (_strCmd.Equals("SHIP")) DeleteOldShipmentDD();
+            }
+        }
+
         public void PrintSummary(string strDateBegin, string strDateEnd)
         {
             string strMethod = MethodBase.GetCurrentMethod().Name;
@@ -226,7 +251,7 @@ namespace ShipmentDHL
 
                 for (int i = 0; i <= iNumRetriesAllowed; i++)
                 {
-                    var cobjManifests = _oldShipmentRequestBuilder.DoAndPrintManifestDD(0);
+                    var cobjManifests = new ShipmentRequestBuilderOld(_objDbController, _objShipment).DoAndPrintManifestDD(0);
                     if (cobjManifests == null || cobjManifests.Count == 0)
                     {
                         break;
@@ -291,7 +316,7 @@ namespace ShipmentDHL
 
                 for (int i = 0; i <= iNumRetriesAllowed; i++)
                 {
-                    var strFile = _oldShipmentRequestBuilder.GetAndPrintManifestDD(objDateBegin, objDateEnd);
+                    var strFile = new ShipmentRequestBuilderOld(_objDbController, _objShipment).GetAndPrintManifestDD(objDateBegin, objDateEnd);
                     if (string.IsNullOrEmpty(strFile))
                     {
                         if(File.Exists(strFile))
@@ -343,7 +368,7 @@ namespace ShipmentDHL
                     if (_strCmd.Equals("SHIP"))
                         Logger.Instance.Log(TraceEventType.Information, 0, _strAssembly + ":" + strMethod + ": Canceling Trackingnumber " + _objShipment.Trackingnumber);
 
-                    if (_oldShipmentRequestBuilder.DeleteShipmentDDRequest())
+                    if (new ShipmentRequestBuilderOld(_objDbController, _objShipment).DeleteShipmentDDRequest())
                     {
                         if (_strCmd.Equals("DELETE"))
                         {
@@ -423,34 +448,6 @@ namespace ShipmentDHL
             {
                 var objPackage = new Package(weight, length, width, height, "PK");
                 _objShipment.Packages.Add(objPackage);
-            }
-        }
-
-        private void CreateShipment(bool oldVersion)
-        {
-            string strMethod = MethodBase.GetCurrentMethod().Name;
-
-            try
-            {
-                var result = false;
-                if(oldVersion)
-                {
-                    result = _oldShipmentRequestBuilder.CreateShipment();
-                }
-                else
-                {
-                    result = _newShipmentRequestBuilder.CreateShipment();
-                }
-
-                if(result)
-                {
-                    Logger.Instance.Log(TraceEventType.Information, 0, _strAssembly + ":" + strMethod + ": Printing labels ...");
-                    PrintLabels();
-                }
-            }
-            catch (Exception)
-            {
-                if (_strCmd.Equals("SHIP")) DeleteOldShipmentDD();
             }
         }
 
@@ -553,6 +550,5 @@ namespace ShipmentDHL
                 new ShipmentException(objException, _strAssembly + ":" + strMethod + ": Printing Error!");
             }
         }
-
     }
 }
