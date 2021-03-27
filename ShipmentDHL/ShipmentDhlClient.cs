@@ -86,19 +86,22 @@ namespace ShipmentDHL
 
                 int iOrderNr = ShipmentTools.SafeParseInt(_objShipment.InvoiceNumber);
                 if (iOrderNr == 0)
-                    new ShipmentException(null, _strAssembly + ":" + strMethod + ": Ordernumber must be greater than 0");
+                    throw new ShipmentException(null, _strAssembly + ":" + strMethod + ": Ordernumber must be greater than 0");
 
                 _objShipment.Order = _objDbController.GetOrder(iOrderNr);
                 if (_objShipment.Order == null)
-                    new ShipmentException(null, _strAssembly + ":" + strMethod + ": No order found for Ordernumber=" + iOrderNr.ToString());
+                    throw new ShipmentException(null, _strAssembly + ":" + strMethod + ": No order found for Ordernumber=" + iOrderNr.ToString());
 
                 _objShipment.Lieferaddress = _objDbController.GetLieferadressen(_objShipment.Order.LieferadressenID);
 
                 _objShipment.Address = _objDbController.GetAdress(_objShipment.Order.AdressenID);
                 if (_objShipment.Address == null)
-                    new ShipmentException(null, _strAssembly + ":" + strMethod + ": No Address found for addressenId=" + _objShipment.Order.AdressenID.ToString());
+                    throw new ShipmentException(null, _strAssembly + ":" + strMethod + ": No Address found for addressenId=" + _objShipment.Order.AdressenID.ToString());
 
                 _objShipment.OrderCountryCode = _objDbController.GetCountryCode(_objShipment.Order.LieferLand).MaxLength(2);
+
+                if (_objShipment.Order.PaketAnzahl > 0)
+                    _objShipment.PackageCount = (int)_objShipment.Order.PaketAnzahl;
 
                 string strConfigFile = _strAssembly + ".dll.config";
                 var objPtP = ShipmentTools.GetShippingTypes("DHL", strConfigFile);
@@ -113,18 +116,6 @@ namespace ShipmentDHL
                     else
                         _objShipment.DDProdCode = _objShipment.DDProdCode_EPI_EUROPAK_INTERNATIONAL;
 
-                    if (_objShipment.Order.PaketAnzahl > 0)
-                        _objShipment.PackageCount = (int)_objShipment.Order.PaketAnzahl;
-
-                    if (_objShipment.Order.ZahlungsartID == (int)Paymenttypes.Bar)
-                        new ShipmentException(null, _strAssembly + ":" + strMethod + ": This shipment must be payed in Cash/Bar!");
-
-                    for (int i = 0; i < _objShipment.PackageCount; i++)
-                    {
-                        var objPackage = new Package(_objShipment.Order.Gesamtgewicht, SettingController.Paket_Length, SettingController.Paket_Width, SettingController.Paket_Height, "PK");
-                        _objShipment.Packages.Add(objPackage);
-                    }
-
                     if (_objShipment.Order.ZahlungsartID == (int)Paymenttypes.Nachnahme)
                     {
                         if (_objShipment.DDProdCode == _objShipment.DDProdCode_EPI_EUROPAK_INTERNATIONAL)
@@ -135,10 +126,16 @@ namespace ShipmentDHL
                         _objShipment.CODAmount = (decimal)_objShipment.Order.Buchungsbetrag;
                         Logger.Instance.Log(TraceEventType.Error, 0, _strAssembly + ":" + strMethod + ": COD Amount is " + _objShipment.CODAmount.ToString(CultureInfo.InvariantCulture));
                     }
+
+                    CreatePackages(_objShipment.Order.Gesamtgewicht, SettingController.Paket_Length, SettingController.Paket_Width, SettingController.Paket_Height);
+                    CreateShipment(true);
                 }
                 else if (objPackageType.InternalId.Length >= 3)
                 {
+                    //DHL Warenpost use with ID
                     _objShipment.DDProdCode = objPackageType.InternalId;
+                    CreatePackages(1, "25", "15", "1");
+                    CreateShipment(false);
                     Logger.Instance.Log(TraceEventType.Error, 0, _strAssembly + ":" + strMethod + ": ProductCode is " + _objShipment.DDProdCode);
                 }
                 else
@@ -418,6 +415,15 @@ namespace ShipmentDHL
                 _objShipment.ReceiverContactPhone = _objShipment.Address.Mobil.MaxLength(20);
             else
                 _objShipment.ReceiverContactPhone = SettingController.ShipperPhoneNumber.MaxLength(20);
+        }
+
+        private void CreatePackages(double? weight, string length, string width, string height)
+        {
+            for (int i = 0; i < _objShipment.PackageCount; i++)
+            {
+                var objPackage = new Package(weight, length, width, height, "PK");
+                _objShipment.Packages.Add(objPackage);
+            }
         }
 
         private void CreateShipment(bool oldVersion)
