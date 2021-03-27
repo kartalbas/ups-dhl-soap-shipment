@@ -11,7 +11,7 @@ using ShipmentLib.SoapDumper;
 
 namespace ShipmentDHL
 {
-    public class ShipmentRequestBuilder : ITraceable
+    public class ShipmentRequestBuilder3 : ITraceable
     {
         private Shipment _objShipment;
         private GKV3XAPIServicePortTypeClient _objWebService;
@@ -43,7 +43,7 @@ namespace ShipmentDHL
             set { componentName = value; }
         }
 
-        public ShipmentRequestBuilder(string strNumber, string strCmd)
+        public ShipmentRequestBuilder3(string strNumber, string strCmd)
         {
             string strMethod = "ShipmentRequestBuilder";
 
@@ -77,7 +77,7 @@ namespace ShipmentDHL
             }
         }
 
-        public ShipmentRequestBuilder(Shipment objShipment)
+        public ShipmentRequestBuilder3(Shipment objShipment)
         {
             string strMethod = "ShipmentRequestBuilder";
 

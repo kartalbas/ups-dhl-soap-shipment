@@ -1,6 +1,5 @@
 ﻿using ShipmentLib;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 
 namespace ShipmentDHL
@@ -32,7 +31,7 @@ namespace ShipmentDHL
         Die Anfrage- bzw. Antwortparameter werden bei den IO-Referenzen erläutert und in Form eines Beispiels dargestellt.
     */
 
-    public class Shipment : ShipmentData
+    public partial class Shipment : ShipmentData
     {
         public Shipment()
         {
@@ -72,7 +71,7 @@ namespace ShipmentDHL
             if (TestMode)
                 return SettingController.DHL_PartnerCode_TestMode;
 
-            if (DDProdCode.Equals(DDProdCode_EPN_EUROPACK_NATIONAL))
+            if (DDProdCode.Equals(DDProdCode_EPN_EUROPACK_NATIONAL) || DDProdCode.Equals(ProdCode_V62WP_DHLWarenpost))
                 return SettingController.DHL_PartnerCode_NAT;
             else if (DDProdCode.Equals(DDProdCode_EPI_EUROPAK_INTERNATIONAL))
                 return SettingController.DHL_PartnerCode_INT;
@@ -82,57 +81,14 @@ namespace ShipmentDHL
             return string.Empty;
         }
 
-        public class Package
-        {
-            public Package() : this(3, SettingController.Paket_Length, SettingController.Paket_Width, SettingController.Paket_Height, "PK")
-            {
-            }
-
-            public Package(double? dWeightInKG, string strLengthInCM, string strWidthInCM, string strHeightInCM, string strPackageType)
-            {
-                PackageType = strPackageType;
-
-                string strLocale = SettingController.DatabaseCulture;
-                WeightInKG = dWeightInKG < 1 ? "1" : dWeightInKG.ToString();
-
-                if (strLengthInCM.Length > 0)
-                    LengthInCM = int.Parse(strLengthInCM, new CultureInfo(strLocale)).ToString(CultureInfo.InvariantCulture);
-                else
-                    LengthInCM = int.Parse(SettingController.Paket_Length, new CultureInfo(strLocale)).ToString(CultureInfo.InvariantCulture);
-
-                if (strWidthInCM.Length > 0)
-                    WidthInCM = int.Parse(strWidthInCM, new CultureInfo(strLocale)).ToString(CultureInfo.InvariantCulture);
-                else
-                    WidthInCM = int.Parse(SettingController.Paket_Width, new CultureInfo(strLocale)).ToString(CultureInfo.InvariantCulture);
-
-                if (strHeightInCM.Length > 0)
-                    HeightInCM = int.Parse(strHeightInCM, new CultureInfo(strLocale)).ToString(CultureInfo.InvariantCulture);
-                else
-                    HeightInCM = int.Parse(SettingController.Paket_Height, new CultureInfo(strLocale)).ToString(CultureInfo.InvariantCulture);
-            }
-
-            public string WeightInKG { get; set; }
-            public string LengthInCM { get; set; }
-            public string WidthInCM { get; set; }
-            public string HeightInCM { get; set; }
-            public string PackageType { get; set; }
-        }
-
         public List<Package> Packages { get; set; }
 
-        public class ItemPosition
-        {
-            public string Amount { get; set; }
-            public decimal CustomsValue { get; set; }
-            public string Description { get ; set; }
-            public string CommodityCode { get; set; }
-            public string CountryCodeOrigin { get; set; }
-            public string CustomsCurrency { get; set; }
-            public decimal GrossWeightInKG { get; set; }
-            public decimal NetWeightInKG { get; set; }
-        }
-
         public List<ItemPosition> ItemPositions { get; set; }
+
+        public string ProdCode_V01PAK_DHLPaket { get { return "V01PAK"; } }
+        public string ProdCode_V54EPAK_DHLPaketInternational { get { return "V54EPAK"; } }
+        public string ProdCode_V53WPAK_DHLPaketInternational { get { return "V53WPAK"; } }
+        public string ProdCode_V62WP_DHLWarenpost { get { return "V62WP"; } }
 
         public string DDProdCode_EPN_EUROPACK_NATIONAL { get { return "EPN"; } }
         public string DDProdCode_BPI_BUSINESS_PAKET_INTERNATIONAL { get { return "BPI"; } }

@@ -96,7 +96,7 @@ namespace ShipmentTests
             objShipment.ReceiverCountryCode = "DE";
             objShipment.DDProdCode = objShipment.DDProdCode_EPN_EUROPACK_NATIONAL;
 
-            ShipmentRequestBuilder objRequest = new ShipmentRequestBuilder(objShipment);
+            ShipmentRequestBuilderOld objRequest = new ShipmentRequestBuilderOld(objShipment);
             var objResult = objRequest.CreateNewShipmentDDRequest();
 
             string strDhlException = string.Empty;
@@ -127,7 +127,7 @@ namespace ShipmentTests
             objShipment.ReceiverCountryCode = "DE";
             objShipment.DDProdCode = objShipment.DDProdCode_EPN_EUROPACK_NATIONAL;
 
-            ShipmentRequestBuilder objRequest = new ShipmentRequestBuilder(objShipment);
+            ShipmentRequestBuilderOld objRequest = new ShipmentRequestBuilderOld(objShipment);
             var objResult = objRequest.CreateNewShipmentDDRequest();
 
             string strDhlException = string.Empty;
@@ -160,7 +160,7 @@ namespace ShipmentTests
             objShipment.CODCurrency = "EUR";
             objShipment.DDProdCode = objShipment.DDProdCode_EPN_EUROPACK_NATIONAL;
 
-            ShipmentRequestBuilder objRequest = new ShipmentRequestBuilder(objShipment);
+            ShipmentRequestBuilderOld objRequest = new ShipmentRequestBuilderOld(objShipment);
             var objResult = objRequest.CreateNewShipmentDDRequest();
 
             string strDhlException = string.Empty;
@@ -188,7 +188,7 @@ namespace ShipmentTests
             objShipment.ReceiverCountryCode = "GB";
             objShipment.DDProdCode = objShipment.DDProdCode_EPI_EUROPAK_INTERNATIONAL;
 
-            ShipmentRequestBuilder objRequest = new ShipmentRequestBuilder(objShipment);
+            ShipmentRequestBuilderOld objRequest = new ShipmentRequestBuilderOld(objShipment);
             var objResult = objRequest.CreateNewShipmentDDRequest();
 
             string strDhlException = string.Empty;
@@ -216,7 +216,7 @@ namespace ShipmentTests
             objShipment.ReceiverCountryCode = "NL";
             objShipment.DDProdCode = objShipment.DDProdCode_EPI_EUROPAK_INTERNATIONAL;
 
-            ShipmentRequestBuilder objRequest = new ShipmentRequestBuilder(objShipment);
+            ShipmentRequestBuilderOld objRequest = new ShipmentRequestBuilderOld(objShipment);
             var objResult = objRequest.CreateNewShipmentDDRequest();
 
             string strDhlException = string.Empty;
@@ -246,7 +246,7 @@ namespace ShipmentTests
             objShipment.ReceiverCountryCode = "CH";
             objShipment.DDProdCode = objShipment.DDProdCode_EPI_EUROPAK_INTERNATIONAL;
 
-            ShipmentRequestBuilder objRequest = new ShipmentRequestBuilder(objShipment);
+            ShipmentRequestBuilderOld objRequest = new ShipmentRequestBuilderOld(objShipment);
             var objResult = objRequest.CreateNewShipmentDDRequest();
 
             string strDhlException = string.Empty;
@@ -276,7 +276,7 @@ namespace ShipmentTests
             objShipment.ReceiverCountryCode = "IS";
             objShipment.DDProdCode = objShipment.DDProdCode_EPI_EUROPAK_INTERNATIONAL;
 
-            ShipmentRequestBuilder objRequest = new ShipmentRequestBuilder(objShipment);
+            ShipmentRequestBuilderOld objRequest = new ShipmentRequestBuilderOld(objShipment);
             var objResult = objRequest.CreateNewShipmentDDRequest();
 
             string strDhlException = string.Empty;
@@ -304,7 +304,7 @@ namespace ShipmentTests
             objShipment.ReceiverCountryCode = "GB";
             objShipment.DDProdCode = objShipment.DDProdCode_BPI_BUSINESS_PAKET_INTERNATIONAL;
 
-            ShipmentRequestBuilder objRequest = new ShipmentRequestBuilder(objShipment);
+            ShipmentRequestBuilderOld objRequest = new ShipmentRequestBuilderOld(objShipment);
             var objResult = objRequest.CreateNewShipmentDDRequest();
 
             string strDhlException = string.Empty;
@@ -334,7 +334,7 @@ namespace ShipmentTests
             objShipment.CODCurrency = "EUR";
             objShipment.DDProdCode = objShipment.DDProdCode_BPI_BUSINESS_PAKET_INTERNATIONAL;
 
-            ShipmentRequestBuilder objRequest = new ShipmentRequestBuilder(objShipment);
+            ShipmentRequestBuilderOld objRequest = new ShipmentRequestBuilderOld(objShipment);
             var objResult = objRequest.CreateNewShipmentDDRequest();
 
             string strDhlException = string.Empty;
@@ -362,7 +362,7 @@ namespace ShipmentTests
             objShipment.ReceiverCountryCode = "NL";
             objShipment.DDProdCode = objShipment.DDProdCode_BPI_BUSINESS_PAKET_INTERNATIONAL;
 
-            ShipmentRequestBuilder objRequest = new ShipmentRequestBuilder(objShipment);
+            ShipmentRequestBuilderOld objRequest = new ShipmentRequestBuilderOld(objShipment);
             var objResult = objRequest.CreateNewShipmentDDRequest();
 
             string strDhlException = string.Empty;
@@ -392,7 +392,7 @@ namespace ShipmentTests
             objShipment.CODCurrency = "EUR";
             objShipment.DDProdCode = objShipment.DDProdCode_BPI_BUSINESS_PAKET_INTERNATIONAL;
 
-            ShipmentRequestBuilder objRequest = new ShipmentRequestBuilder(objShipment);
+            ShipmentRequestBuilderOld objRequest = new ShipmentRequestBuilderOld(objShipment);
             var objResult = objRequest.CreateNewShipmentDDRequest();
 
             string strDhlException = string.Empty;

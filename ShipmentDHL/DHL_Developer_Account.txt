@@ -2,3 +2,10 @@
 User		: mk@simetrix.eu
 Password	: $SimWeg@!3
 
+  <appSettings>
+    <add key="DHL1" value="EPN;Europack National;54,55,56,57,58" />
+    <add key="DHL2" value="EPI;Europack International;48,49,50,51,52,53" />
+    <add key="DHL3" value="BPI;Business Packet International;31,46,47" />
+    <add key="DHL4" value="V62WP;Warenpost;13" />
+    <add key="DHL5" value="EXIT" />
+  </appSettings>

@@ -40,6 +40,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -54,7 +57,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ShipmentRequestBuilder.cs" />
+    <Compile Include="ItemPosition.cs" />
+    <Compile Include="Package.cs" />
+    <Compile Include="Service References\ShipWebReference3\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="ShipmentDhlClient.cs" />
+    <Compile Include="ShipmentRequestBuilderOld.cs" />
     <Compile Include="Service References\ShipWebReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -62,6 +73,7 @@
     </Compile>
     <Compile Include="Shipment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShipmentRequestBuilderNew.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ShipmentLib\ShipmentLib.csproj">
@@ -89,10 +101,84 @@
     <Content Include="Reports\PrintSummaryDHL.lst">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Service References\ShipWebReference3\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\ShipWebReference3\configuration.svcinfo" />
+    <None Include="Service References\ShipWebReference3\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\Externals\DHL\geschaeftskundenversand-api-3.1.4.wsdl">
+      <Link>OpenAPIs\geschaeftskundenversand-api-3.1.4.wsdl</Link>
+      <Namespace>ShipmentWebReference3</Namespace>
+      <ClassName>ShipmentWebReference3</ClassName>
+      <CodeGenerator>NSwagCSharp</CodeGenerator>
+    </None>
     <None Include="app.config">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Service References\ShipWebReference3\geschaeftskundenversand-api-3.wsdl" />
+    <None Include="Service References\ShipWebReference3\geschaeftskundenversand-api-3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ShipWebReference3\geschaeftskundenversand-api-31.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ShipWebReference3\ShipmentDHL.ShipWebReference3.CreateShipmentOrderResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ShipWebReference3\ShipmentDHL.ShipWebReference3.createShipmentOrderResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ShipWebReference3\ShipmentDHL.ShipWebReference3.DeleteShipmentOrderResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ShipWebReference3\ShipmentDHL.ShipWebReference3.deleteShipmentOrderResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ShipWebReference3\ShipmentDHL.ShipWebReference3.DoManifestResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ShipWebReference3\ShipmentDHL.ShipWebReference3.doManifestResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ShipWebReference3\ShipmentDHL.ShipWebReference3.GetExportDocResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ShipWebReference3\ShipmentDHL.ShipWebReference3.getExportDocResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ShipWebReference3\ShipmentDHL.ShipWebReference3.GetLabelResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ShipWebReference3\ShipmentDHL.ShipWebReference3.getLabelResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ShipWebReference3\ShipmentDHL.ShipWebReference3.GetManifestResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ShipWebReference3\ShipmentDHL.ShipWebReference3.getManifestResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ShipWebReference3\ShipmentDHL.ShipWebReference3.GetVersionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ShipWebReference3\ShipmentDHL.ShipWebReference3.getVersionResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ShipWebReference3\ShipmentDHL.ShipWebReference3.UpdateShipmentOrderResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ShipWebReference3\ShipmentDHL.ShipWebReference3.updateShipmentOrderResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ShipWebReference3\ShipmentDHL.ShipWebReference3.ValidateShipmentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ShipWebReference3\ShipmentDHL.ShipWebReference3.validateShipmentResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ShipWebReference\cis_base.xsd">
       <SubType>Designer</SubType>
@@ -133,6 +219,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ShipWebReference3\" />
     <WCFMetadataStorage Include="Service References\ShipWebReference\" />
   </ItemGroup>
   <ItemGroup>

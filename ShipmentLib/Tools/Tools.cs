@@ -14,7 +14,7 @@ namespace ShipmentLib
 
         private static string[] astrEUCodes = new string[]
         {
-            "BE", "BG", "GR", "CZ", "DK", "DE", "EE", "IE", "EL", "ES", "FR", "HR", "IT", "CY", "LV", "LT", "LU", "HU", "MT", "NL", "AT", "PL", "PT", "RO", "SI", "SK", "FI", "SE", "UK", "GB"
+            "BE", "BG", "GR", "CZ", "DK", "DE", "EE", "IE", "EL", "ES", "FR", "HR", "IT", "CY", "LV", "LT", "LU", "HU", "MT", "NL", "AT", "PL", "PT", "RO", "SI", "SK", "FI", "SE"
         };
 
         private static string[] astrEUCandidatesCodes = new string[]

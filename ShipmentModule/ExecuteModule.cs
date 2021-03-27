@@ -53,7 +53,7 @@ namespace ShipmentModule
         {
             string strMethod = MethodBase.GetCurrentMethod().Name;
 
-            ShipmentDHL.ShipmentRequestBuilder objRequest = new ShipmentDHL.ShipmentRequestBuilder(_objOptions.number, _objOptions.cmd);
+            ShipmentDHL.ShipmentDhlClient objRequest = new ShipmentDHL.ShipmentDhlClient(_objOptions.number, _objOptions.cmd);
 
             //DHL: REPORT
             if (_objOptions.cmd.Equals("REPORT"))
@@ -78,7 +78,7 @@ namespace ShipmentModule
             //DHL: Ship
             else if (_objOptions.cmd.Equals("SHIP"))
             {
-                objRequest.CreateNewShipmentDDRequest();
+                objRequest.CreateShipment();
             }
             //Quit
             else

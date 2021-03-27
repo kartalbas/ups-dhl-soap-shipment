@@ -11754,7 +11754,7 @@ Email Address    (mandatory): cis:CommunicationType->email</documentation>
                </ShipmentDetails> 
                <Shipper> 
                   <Name> 
-                     <cis:name1>Absender Zeile 1</cis:name1> 
+                     <cis:name1>Wegacell GmbH</cis:name1> 
                      <cis:name2>Absender Zeile 2</cis:name2> 
                      <cis:name3>Absender Zeile 3</cis:name3> 
                   </Name> 
@@ -11770,10 +11770,10 @@ Email Address    (mandatory): cis:CommunicationType->email</documentation>
                   </Address> 
                   <Communication> 
                      <!--Optional:--> 
-                     <cis:phone>+49421987654321</cis:phone> 
-                     <cis:email>absender@test.de</cis:email> 
+                     <cis:phone>+49212645010-283</cis:phone> 
+                     <cis:email>info@wegacell.de</cis:email> 
                      <!--Optional:--> 
-                     <cis:contactPerson>Kontaktperson Absender</cis:contactPerson> 
+                     <cis:contactPerson>Ali Tunc</cis:contactPerson> 
                   </Communication> 
                </Shipper> 
                <Receiver> 
@@ -11799,7 +11799,7 @@ Email Address    (mandatory): cis:CommunicationType->email</documentation>
             </Shipment> 
             <PrintOnlyIfCodeable active="1"/> 
          </ShipmentOrder> 
-         <labelResponseType>URL</labelResponseType> 
+         <labelResponseType>ZPL2</labelResponseType> 
          <groupProfileName></groupProfileName> 
          <labelFormat></labelFormat> 
          <labelFormatRetoure></labelFormatRetoure> 
@@ -12230,143 +12230,143 @@ Email Address    (mandatory): cis:CommunicationType->email</documentation>
             </Shipment>
             <PrintOnlyIfCodeable active="1"/>
          </ShipmentOrder>
-<ShipmentOrder>
-            <sequenceNumber></sequenceNumber>
-            <Shipment>
-               <ShipmentDetails>
-                  <product>V62WP</product>
-                  <cis:accountNumber>${#Project#testAccountNumberV62WP}</cis:accountNumber>
-                  <customerReference>Ref. 123456</customerReference>
-                  <shipmentDate>${#Project#testDate}</shipmentDate>
-                  <costCentre></costCentre>
-                  <ShipmentItem>
-                     <weightInKG>1</weightInKG>
-                     <lengthInCM>25</lengthInCM>
-                     <widthInCM>15</widthInCM>
-                     <heightInCM>1</heightInCM>
-                  </ShipmentItem>
-                  <Service>
-                  </Service>
-                  <Notification>
-                     <recipientEmailAddress>empfaenger@test.de</recipientEmailAddress>
-                  </Notification>
-               </ShipmentDetails>
-               <Shipper>
-                  <Name>
-                     <cis:name1>Absender Zeile 1</cis:name1>
-                     <cis:name2>Absender Zeile 2</cis:name2>
-                     <cis:name3>Absender Zeile 3</cis:name3>
-                  </Name>
-                  <Address>
-                     <cis:streetName>Vegesacker Heerstr.</cis:streetName>
-                     <cis:streetNumber>111</cis:streetNumber>
-                     <cis:zip>28757</cis:zip>
-                     <cis:city>Bremen</cis:city>
-                     <cis:Origin>
-                        <cis:country></cis:country>
-                        <cis:countryISOCode>DE</cis:countryISOCode>
-                     </cis:Origin>
-                  </Address>
-                  <Communication>
-                     <!--Optional:-->
-                     <cis:phone>+49421987654321</cis:phone>
-                     <cis:email>absender@test.de</cis:email>
-                     <!--Optional:-->
-                     <cis:contactPerson>Kontaktperson Absender</cis:contactPerson>
-                  </Communication>
-               </Shipper>
-               <Receiver>
-                  <cis:name1>Empfänger Zeile 1</cis:name1>
-                  <Address>
-                     <cis:name2>Empfänger Zeile 2</cis:name2>
-                     <cis:name3>Empfänger Zeile 3</cis:name3>
-                     <cis:streetName>An der Weide</cis:streetName>
-                     <cis:streetNumber>50a</cis:streetNumber>
-                     <cis:zip>28195</cis:zip>
-                     <cis:city>Bremen</cis:city>
-                     <cis:Origin>
-                        <cis:country></cis:country>
-                        <cis:countryISOCode>DE</cis:countryISOCode>
-                     </cis:Origin>
-                  </Address>
-                  <Communication>
-                     <cis:phone>+49421123456789</cis:phone>
-                     <cis:email>empfaenger@test.de</cis:email>
-                     <cis:contactPerson>Kontaktperson Empfänger</cis:contactPerson>
-                  </Communication>
-               </Receiver>
-            </Shipment>
-            <PrintOnlyIfCodeable active="1"/>
-         </ShipmentOrder>
-<ShipmentOrder>
-            <sequenceNumber></sequenceNumber>
-            <Shipment>
-               <ShipmentDetails>
-                  <product>V62WP</product>
-                  <cis:accountNumber>${#Project#testAccountNumberV62WP}</cis:accountNumber>
-                  <customerReference>Ref. 123456</customerReference>
-                  <shipmentDate>${#Project#testDate}</shipmentDate>
-                  <costCentre></costCentre>
-                  <ShipmentItem>
-                     <weightInKG>1</weightInKG>
-                     <lengthInCM>25</lengthInCM>
-                     <widthInCM>15</widthInCM>
-                     <heightInCM>1</heightInCM>
-                  </ShipmentItem>
-                  <Service>
-                  </Service>
-                  <Notification>
-                     <recipientEmailAddress>empfaenger@test.de</recipientEmailAddress>
-                  </Notification>
-               </ShipmentDetails>
-               <Shipper>
-                  <Name>
-                     <cis:name1>Absender Zeile 1</cis:name1>
-                     <cis:name2>Absender Zeile 2</cis:name2>
-                     <cis:name3>Absender Zeile 3</cis:name3>
-                  </Name>
-                  <Address>
-                     <cis:streetName>Vegesacker Heerstr.</cis:streetName>
-                     <cis:streetNumber>111</cis:streetNumber>
-                     <cis:zip>28757</cis:zip>
-                     <cis:city>Bremen</cis:city>
-                     <cis:Origin>
-                        <cis:country></cis:country>
-                        <cis:countryISOCode>DE</cis:countryISOCode>
-                     </cis:Origin>
-                  </Address>
-                  <Communication>
-                     <!--Optional:-->
-                     <cis:phone>+49421987654321</cis:phone>
-                     <cis:email>absender@test.de</cis:email>
-                     <!--Optional:-->
-                     <cis:contactPerson>Kontaktperson Absender</cis:contactPerson>
-                  </Communication>
-               </Shipper>
-               <Receiver>
-                  <cis:name1>Empfänger Zeile 1</cis:name1>
-                  <Address>
-                     <cis:name2>Empfänger Zeile 2</cis:name2>
-                     <cis:name3>Empfänger Zeile 3</cis:name3>
-                     <cis:streetName>An der Weide</cis:streetName>
-                     <cis:streetNumber>50a</cis:streetNumber>
-                     <cis:zip>28195</cis:zip>
-                     <cis:city>Bremen</cis:city>
-                     <cis:Origin>
-                        <cis:country></cis:country>
-                        <cis:countryISOCode>DE</cis:countryISOCode>
-                     </cis:Origin>
-                  </Address>
-                  <Communication>
-                     <cis:phone>+49421123456789</cis:phone>
-                     <cis:email>empfaenger@test.de</cis:email>
-                     <cis:contactPerson>Kontaktperson Empfänger</cis:contactPerson>
-                  </Communication>
-               </Receiver>
-            </Shipment>
-            <PrintOnlyIfCodeable active="1"/>
-         </ShipmentOrder>
-<ShipmentOrder>
+		<ShipmentOrder>
+		            <sequenceNumber></sequenceNumber>
+		            <Shipment>
+		               <ShipmentDetails>
+		                  <product>V62WP</product>
+		                  <cis:accountNumber>${#Project#testAccountNumberV62WP}</cis:accountNumber>
+		                  <customerReference>Ref. 123456</customerReference>
+		                  <shipmentDate>${#Project#testDate}</shipmentDate>
+		                  <costCentre></costCentre>
+		                  <ShipmentItem>
+		                     <weightInKG>1</weightInKG>
+		                     <lengthInCM>25</lengthInCM>
+		                     <widthInCM>15</widthInCM>
+		                     <heightInCM>1</heightInCM>
+		                  </ShipmentItem>
+		                  <Service>
+		                  </Service>
+		                  <Notification>
+		                     <recipientEmailAddress>empfaenger@test.de</recipientEmailAddress>
+		                  </Notification>
+		               </ShipmentDetails>
+		               <Shipper>
+		                  <Name>
+		                     <cis:name1>Absender Zeile 1</cis:name1>
+		                     <cis:name2>Absender Zeile 2</cis:name2>
+		                     <cis:name3>Absender Zeile 3</cis:name3>
+		                  </Name>
+		                  <Address>
+		                     <cis:streetName>Vegesacker Heerstr.</cis:streetName>
+		                     <cis:streetNumber>111</cis:streetNumber>
+		                     <cis:zip>28757</cis:zip>
+		                     <cis:city>Bremen</cis:city>
+		                     <cis:Origin>
+		                        <cis:country></cis:country>
+		                        <cis:countryISOCode>DE</cis:countryISOCode>
+		                     </cis:Origin>
+		                  </Address>
+		                  <Communication>
+		                     <!--Optional:-->
+		                     <cis:phone>+49421987654321</cis:phone>
+		                     <cis:email>absender@test.de</cis:email>
+		                     <!--Optional:-->
+		                     <cis:contactPerson>Kontaktperson Absender</cis:contactPerson>
+		                  </Communication>
+		               </Shipper>
+		               <Receiver>
+		                  <cis:name1>Empfänger Zeile 1</cis:name1>
+		                  <Address>
+		                     <cis:name2>Empfänger Zeile 2</cis:name2>
+		                     <cis:name3>Empfänger Zeile 3</cis:name3>
+		                     <cis:streetName>An der Weide</cis:streetName>
+		                     <cis:streetNumber>50a</cis:streetNumber>
+		                     <cis:zip>28195</cis:zip>
+		                     <cis:city>Bremen</cis:city>
+		                     <cis:Origin>
+		                        <cis:country></cis:country>
+		                        <cis:countryISOCode>DE</cis:countryISOCode>
+		                     </cis:Origin>
+		                  </Address>
+		                  <Communication>
+		                     <cis:phone>+49421123456789</cis:phone>
+		                     <cis:email>empfaenger@test.de</cis:email>
+		                     <cis:contactPerson>Kontaktperson Empfänger</cis:contactPerson>
+		                  </Communication>
+		               </Receiver>
+		            </Shipment>
+		            <PrintOnlyIfCodeable active="1"/>
+		         </ShipmentOrder>
+		<ShipmentOrder>
+		            <sequenceNumber></sequenceNumber>
+		            <Shipment>
+		               <ShipmentDetails>
+		                  <product>V62WP</product>
+		                  <cis:accountNumber>${#Project#testAccountNumberV62WP}</cis:accountNumber>
+		                  <customerReference>Ref. 123456</customerReference>
+		                  <shipmentDate>${#Project#testDate}</shipmentDate>
+		                  <costCentre></costCentre>
+		                  <ShipmentItem>
+		                     <weightInKG>1</weightInKG>
+		                     <lengthInCM>25</lengthInCM>
+		                     <widthInCM>15</widthInCM>
+		                     <heightInCM>1</heightInCM>
+		                  </ShipmentItem>
+		                  <Service>
+		                  </Service>
+		                  <Notification>
+		                     <recipientEmailAddress>empfaenger@test.de</recipientEmailAddress>
+		                  </Notification>
+		               </ShipmentDetails>
+		               <Shipper>
+		                  <Name>
+		                     <cis:name1>Absender Zeile 1</cis:name1>
+		                     <cis:name2>Absender Zeile 2</cis:name2>
+		                     <cis:name3>Absender Zeile 3</cis:name3>
+		                  </Name>
+		                  <Address>
+		                     <cis:streetName>Vegesacker Heerstr.</cis:streetName>
+		                     <cis:streetNumber>111</cis:streetNumber>
+		                     <cis:zip>28757</cis:zip>
+		                     <cis:city>Bremen</cis:city>
+		                     <cis:Origin>
+		                        <cis:country></cis:country>
+		                        <cis:countryISOCode>DE</cis:countryISOCode>
+		                     </cis:Origin>
+		                  </Address>
+		                  <Communication>
+		                     <!--Optional:-->
+		                     <cis:phone>+49421987654321</cis:phone>
+		                     <cis:email>absender@test.de</cis:email>
+		                     <!--Optional:-->
+		                     <cis:contactPerson>Kontaktperson Absender</cis:contactPerson>
+		                  </Communication>
+		               </Shipper>
+		               <Receiver>
+		                  <cis:name1>Empfänger Zeile 1</cis:name1>
+		                  <Address>
+		                     <cis:name2>Empfänger Zeile 2</cis:name2>
+		                     <cis:name3>Empfänger Zeile 3</cis:name3>
+		                     <cis:streetName>An der Weide</cis:streetName>
+		                     <cis:streetNumber>50a</cis:streetNumber>
+		                     <cis:zip>28195</cis:zip>
+		                     <cis:city>Bremen</cis:city>
+		                     <cis:Origin>
+		                        <cis:country></cis:country>
+		                        <cis:countryISOCode>DE</cis:countryISOCode>
+		                     </cis:Origin>
+		                  </Address>
+		                  <Communication>
+		                     <cis:phone>+49421123456789</cis:phone>
+		                     <cis:email>empfaenger@test.de</cis:email>
+		                     <cis:contactPerson>Kontaktperson Empfänger</cis:contactPerson>
+		                  </Communication>
+		               </Receiver>
+		            </Shipment>
+		            <PrintOnlyIfCodeable active="1"/>
+		         </ShipmentOrder>
+		<ShipmentOrder>
             <sequenceNumber></sequenceNumber>
             <Shipment>
                <ShipmentDetails>
@@ -13477,4 +13477,4 @@ Email Address    (mandatory): cis:CommunicationType->email</documentation>
          <combinedPrinting>0</combinedPrinting>
       </ns:ValidateShipmentOrderRequest>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:username>${#Project#DeveloperID}</con:username><con:password>${#Project#EportalPassword}</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:validateShipment" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties><con:property><con:name>DeveloperID</con:name><con:value/></con:property><con:property><con:name>EportalPassword</con:name><con:value/></con:property><con:property><con:name>testUserID</con:name><con:value>2222222222_01</con:value></con:property><con:property><con:name>testUserSignature</con:name><con:value>pass</con:value></con:property><con:property><con:name>testDate</con:name><con:value>2021-12-29</con:value></con:property><con:property><con:name>testAccountNumberV01PAK</con:name><con:value>22222222220104</con:value></con:property><con:property><con:name>testAccountNumberV53WPAK</con:name><con:value>22222222225301</con:value></con:property><con:property><con:name>testAccountNumberV54EPAK</con:name><con:value>22222222225401</con:value></con:property><con:property><con:name>testAccountNumberV06TG</con:name><con:value>22222222220112</con:value></con:property><con:property><con:name>testAccountNumberV06WZ</con:name><con:value>22222222220111</con:value></con:property><con:property><con:name>testReturnShipmentAccountNumberV01PAK</con:name><con:value>22222222220701</con:value></con:property><con:property><con:name>testAccountNumberV86PARCEL</con:name><con:value>22222222228602</con:value></con:property><con:property><con:name>testReturnShipmentAccountNumberV86PARCEL</con:name><con:value>22222222228302</con:value></con:property><con:property><con:name>testAccountNumberV87PARCEL</con:name><con:value>22222222228702</con:value></con:property><con:property><con:name>testAccountNumberV82PARCEL</con:name><con:value>22222222228202</con:value></con:property><con:property><con:name>testReturnShipmentAccountNumberV87PARCEL</con:name><con:value>22222222228502</con:value></con:property><con:property><con:name>testAccountNumberV55PAK</con:name><con:value>22222222225503</con:value></con:property><con:property><con:name>testAccountNumberV01PRIO</con:name><con:value>22222222220108</con:value></con:property><con:property><con:name>testDatePreferredDay</con:name><con:value>2021-12-31</con:value></con:property><con:property><con:name>testAccountNumberV06PAK</con:name><con:value>22222222220601</con:value></con:property><con:property><con:name>testAccountNumberV62WP</con:name><con:value>22222222226201</con:value></con:property></con:properties><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
+</soapenv:Envelope>]]></con:request><con:credentials><con:username>${#Project#DeveloperID}</con:username><con:password>${#Project#EportalPassword}</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:validateShipment" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties><con:property><con:name>DeveloperID</con:name><con:value>kartalbas</con:value></con:property><con:property><con:name>EportalPassword</con:name><con:value>WegacellDE01!</con:value></con:property><con:property><con:name>testUserID</con:name><con:value>2222222222_01</con:value></con:property><con:property><con:name>testUserSignature</con:name><con:value>pass</con:value></con:property><con:property><con:name>testDate</con:name><con:value>2021-12-29</con:value></con:property><con:property><con:name>testAccountNumberV01PAK</con:name><con:value>22222222220104</con:value></con:property><con:property><con:name>testAccountNumberV53WPAK</con:name><con:value>22222222225301</con:value></con:property><con:property><con:name>testAccountNumberV54EPAK</con:name><con:value>22222222225401</con:value></con:property><con:property><con:name>testAccountNumberV06TG</con:name><con:value>22222222220112</con:value></con:property><con:property><con:name>testAccountNumberV06WZ</con:name><con:value>22222222220111</con:value></con:property><con:property><con:name>testReturnShipmentAccountNumberV01PAK</con:name><con:value>22222222220701</con:value></con:property><con:property><con:name>testAccountNumberV86PARCEL</con:name><con:value>22222222228602</con:value></con:property><con:property><con:name>testReturnShipmentAccountNumberV86PARCEL</con:name><con:value>22222222228302</con:value></con:property><con:property><con:name>testAccountNumberV87PARCEL</con:name><con:value>22222222228702</con:value></con:property><con:property><con:name>testAccountNumberV82PARCEL</con:name><con:value>22222222228202</con:value></con:property><con:property><con:name>testReturnShipmentAccountNumberV87PARCEL</con:name><con:value>22222222228502</con:value></con:property><con:property><con:name>testAccountNumberV55PAK</con:name><con:value>22222222225503</con:value></con:property><con:property><con:name>testAccountNumberV01PRIO</con:name><con:value>22222222220108</con:value></con:property><con:property><con:name>testDatePreferredDay</con:name><con:value>2021-12-31</con:value></con:property><con:property><con:name>testAccountNumberV06PAK</con:name><con:value>22222222220601</con:value></con:property><con:property><con:name>testAccountNumberV62WP</con:name><con:value>22222222226201</con:value></con:property></con:properties><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

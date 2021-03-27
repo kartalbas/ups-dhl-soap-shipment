@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2024
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShipmentUPS", "ShipmentUPS\ShipmentUPS.csproj", "{ADD25CBB-8395-4F61-930E-92D697A44B58}"
 EndProject
@@ -56,29 +56,5 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1624E7AB-969D-4085-BC70-BDBEEA785C1A}
-	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 7
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://wegatrade.visualstudio.com/
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = ShipmentLib\\ShipmentLib.csproj
-		SccProjectName1 = ShipmentLib
-		SccLocalPath1 = ShipmentLib
-		SccProjectUniqueName2 = ShipmentUPS\\ShipmentUPS.csproj
-		SccProjectName2 = ShipmentUPS
-		SccLocalPath2 = ShipmentUPS
-		SccProjectUniqueName3 = ShipmentDHL\\ShipmentDHL.csproj
-		SccProjectName3 = ShipmentDHL
-		SccLocalPath3 = ShipmentDHL
-		SccProjectUniqueName4 = ShipmentModule\\ShipmentModule.csproj
-		SccProjectName4 = ShipmentModule
-		SccLocalPath4 = ShipmentModule
-		SccProjectUniqueName5 = ShipmentTests\\ShipmentTests.csproj
-		SccProjectName5 = ShipmentTests
-		SccLocalPath5 = ShipmentTests
-		SccProjectUniqueName6 = ShipmentClient\\ShipmentClient.csproj
-		SccProjectName6 = ShipmentClient
-		SccLocalPath6 = ShipmentClient
 	EndGlobalSection
 EndGlobal
