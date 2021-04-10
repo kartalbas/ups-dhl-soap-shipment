@@ -247,7 +247,7 @@ namespace ShipmentDHL
 
         private CreateShipmentOrderRequest CreateShipmentOrderRequest(int iCountOfPackages)
         {
-            Logger.Instance.Log(TraceEventType.Error, 0, _strAssembly + ": Count of Package" + iCountOfPackages.ToString());
+            Logger.Instance.Log(TraceEventType.Error, 0, _strAssembly + ": Count of Package: " + iCountOfPackages.ToString());
 
             CreateShipmentOrderRequest createShipmentOrderRequest = new CreateShipmentOrderRequest();
             createShipmentOrderRequest.labelResponseType = _labelResponse;
@@ -377,7 +377,7 @@ namespace ShipmentDHL
         {
             NativeAddressTypeNew address = new NativeAddressTypeNew();
             address.streetName = _objShipment.ShipperStreet;
-            address.streetNumber = _objShipment.ShipperStreet;
+            address.streetNumber = _objShipment.ShipperStreetNr;
             address.city = _objShipment.ShipperCity;
             address.zip = _objShipment.ShipperZip;
             NewCountryType origin = new NewCountryType();

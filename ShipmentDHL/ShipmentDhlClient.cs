@@ -99,12 +99,12 @@ namespace ShipmentDHL
                 else
                 {
                     Logger.Instance.Log(TraceEventType.Information, 0, _strAssembly + ":" + strMethod + ": Sending Shipment to DHL using old version: " + OldVersion.ToString());
-                    result = new ShipmentRequestBuilderNew(_objDbController, _objShipment, ShipWebReference3.CreateShipmentOrderRequestLabelResponseType.ZPL2).CreateShipment();
+                    result = new ShipmentRequestBuilderNew(_objDbController, _objShipment, ShipWebReference3.CreateShipmentOrderRequestLabelResponseType.URL).CreateShipment();
                     Logger.Instance.Log(TraceEventType.Information, 0, _strAssembly + ":" + strMethod + ": Result of CreateShipment " + result.ToString());
                     if (result)
                     {
                         Logger.Instance.Log(TraceEventType.Information, 0, _strAssembly + ":" + strMethod + ": Printing labels ...");
-                        PrintLabels(false);
+                        PrintLabels(true);
                     }
                 }
 
