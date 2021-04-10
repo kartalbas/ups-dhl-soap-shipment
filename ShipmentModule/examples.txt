@@ -11,7 +11,7 @@ UPS:
 
 DHL:
 ** Generiere Trackingnummer für Rechnung 123123
- --mode=2 --cmd=SHIP --number=123123
+ --mode=2 --cmd=SHIP --number=1331076
 
 ** Lösche Trackingnummer 1Z234234234234234
  --mode=2 --cmd=DELETE --number=1Z234234234234234

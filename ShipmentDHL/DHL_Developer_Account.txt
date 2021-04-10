@@ -9,3 +9,17 @@ Password	: $SimWeg@!3
     <add key="DHL4" value="V62WP;Warenpost;13" />
     <add key="DHL5" value="EXIT" />
   </appSettings>
+
+
+52294421490101
+DHL Paket
+
+52294421495302
+DHL Paket International
+
+52294421495401
+DHL Europaket
+
+52294421496201
+Warenpost
+

@@ -78,7 +78,7 @@ namespace ShipmentModule
             //DHL: Ship
             else if (_objOptions.cmd.Equals("SHIP"))
             {
-                objRequest.CreateShipment();
+                objRequest.CreateNewShipment();
             }
             //Quit
             else

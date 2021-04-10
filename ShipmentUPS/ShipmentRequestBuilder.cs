@@ -62,13 +62,17 @@ namespace ShipmentUPS
 
             Logger.Instance.Log(TraceEventType.Information, 0, _strAssembly + ":" + strMethod + ": Belegnummer = " + strOrderNr);
 
-            _strOrderNr = strOrderNr;          
+            ServicePointManager.ServerCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true;
+            ServicePointManager.Expect100Continue = true;
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
+            _strOrderNr = strOrderNr;
             _objDbController = new DatabaseController();
             _objLL = new PrintListLabel();
 
             Initialize();
 
-            Logger.Instance.Log(TraceEventType.Error, 0, _strAssembly + ":" + strMethod + ": Executing Request in Test Mode? : " + SettingController.UPS_TestMode.ToString());
+            Logger.Instance.Log(TraceEventType.Information, 0, _strAssembly + ":" + strMethod + ": Executing Request in Test Mode? : " + SettingController.UPS_TestMode.ToString());
         }
 
         public Shipment InitShipment()
@@ -402,8 +406,6 @@ namespace ShipmentUPS
                 objUpss.UsernameToken = objUpssUsrNameToken;
                 objVoidService.UPSSecurityValue = objUpss;
 
-                System.Net.ServicePointManager.CertificatePolicy = new TrustAllCertificatePolicy();
-                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
                 VoidWebReference.VoidShipmentResponse objVoidResponse = objVoidService.ProcessVoid(objVoidRequest);
 
                 if (objVoidResponse != null)
@@ -596,9 +598,6 @@ namespace ShipmentUPS
                 objShipmentRequest.Request = objRequest;
                 objShipmentRequest.LabelSpecification = objLabelSpec;
                 objShipmentRequest.Shipment = objShipmentType;
-
-                System.Net.ServicePointManager.CertificatePolicy = new TrustAllCertificatePolicy();
-                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
 
                 //CREATE WEB SERVICE
                 ShipWebReference.ShipService objShpSvc = new ShipWebReference.ShipService();

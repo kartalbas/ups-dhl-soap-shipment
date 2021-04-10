@@ -39,6 +39,8 @@ namespace ShipmentDHL
             set { componentName = value; }
         }
 
+        public bool OldVersion { get; set; }
+
         public ShipmentDhlClient(string strNumber, string strCmd)
         {
             string strMethod = MethodBase.GetCurrentMethod().Name;
@@ -49,17 +51,15 @@ namespace ShipmentDHL
             if (string.IsNullOrEmpty(strCmd))
                 new ShipmentException(null, _strAssembly + ":" + strMethod + ": strCmd is NULL!");
 
+            OldVersion = true;
             _strCmd = strCmd;
             _objShipment = new Shipment();
             _objLL = new PrintListLabel();
 
             Logger.Instance.Log(TraceEventType.Information, 0, _strAssembly + ":" + strMethod + ": Command = " + strCmd);
-            Logger.Instance.Log(TraceEventType.Error, 0, _strAssembly + ":" + strMethod + ": Executing Request in Test Mode? : " + SettingController.DHL_TestMode.ToString());
+            Logger.Instance.Log(TraceEventType.Information, 0, _strAssembly + ":" + strMethod + ": Executing Request in Test Mode? : " + SettingController.DHL_TestMode.ToString());
 
             _objDbController = new DatabaseController();
-
-            if (!_objShipment.ExecutedByShipmentTests)
-                InitShipment();
 
             if (strCmd.Equals("DELETE"))
             {
@@ -70,30 +70,84 @@ namespace ShipmentDHL
             {
                 _objShipment.InvoiceNumber = strNumber;
                 Logger.Instance.Log(TraceEventType.Information, 0, _strAssembly + ":" + strMethod + ": Belegnummer " + strNumber);
+
+                if (!_objShipment.ExecutedByShipmentTests)
+                {
+                    OldVersion = InitShipment();
+                }
             }
         }
 
-        public void CreateShipment()
+        public void CreateNewShipment()
         {
             string strMethod = MethodBase.GetCurrentMethod().Name;
 
             try
             {
-                _objShipment = new Shipment();
+                var result = false;
+                if (OldVersion)
+                {
+                    Logger.Instance.Log(TraceEventType.Information, 0, _strAssembly + ":" + strMethod + ": Sending Shipment to DHL using old version: " + OldVersion.ToString());
+                    result = new ShipmentRequestBuilderOld(_objDbController, _objShipment).CreateShipment();
+                    Logger.Instance.Log(TraceEventType.Information, 0, _strAssembly + ":" + strMethod + ": Result of CreateShipment " + result.ToString());
+                    if (result)
+                    {
+                        Logger.Instance.Log(TraceEventType.Information, 0, _strAssembly + ":" + strMethod + ": Printing labels ...");
+                        PrintLabels(true);
+                    }
+                }
+                else
+                {
+                    Logger.Instance.Log(TraceEventType.Information, 0, _strAssembly + ":" + strMethod + ": Sending Shipment to DHL using old version: " + OldVersion.ToString());
+                    result = new ShipmentRequestBuilderNew(_objDbController, _objShipment, ShipWebReference3.CreateShipmentOrderRequestLabelResponseType.ZPL2).CreateShipment();
+                    Logger.Instance.Log(TraceEventType.Information, 0, _strAssembly + ":" + strMethod + ": Result of CreateShipment " + result.ToString());
+                    if (result)
+                    {
+                        Logger.Instance.Log(TraceEventType.Information, 0, _strAssembly + ":" + strMethod + ": Printing labels ...");
+                        PrintLabels(false);
+                    }
+                }
 
+            }
+            catch (Exception e)
+            {
+                Logger.Instance.Log(TraceEventType.Information, 0, _strAssembly + ":" + strMethod + ": " + e.Message);
+                if (_strCmd.Equals("SHIP")) DeleteOldShipmentDD();
+            }
+        }
+
+        private bool CreateShipment()
+        {
+            string strMethod = MethodBase.GetCurrentMethod().Name;
+
+            try
+            {
                 int iOrderNr = ShipmentTools.SafeParseInt(_objShipment.InvoiceNumber);
                 if (iOrderNr == 0)
-                    throw new ShipmentException(null, _strAssembly + ":" + strMethod + ": Ordernumber must be greater than 0");
+                {
+                    var message = _strAssembly + ":" + strMethod + ": Ordernumber must be greater than 0";
+                    new ShipmentException(null, message);
+                    throw new Exception(message);
+                }
 
                 _objShipment.Order = _objDbController.GetOrder(iOrderNr);
+
                 if (_objShipment.Order == null)
-                    throw new ShipmentException(null, _strAssembly + ":" + strMethod + ": No order found for Ordernumber=" + iOrderNr.ToString());
+                {
+                    var message = _strAssembly + ":" + strMethod + ": No order found for Ordernumber=" + iOrderNr.ToString();
+                    new ShipmentException(null, message);
+                    throw new Exception(message);
+                }
 
                 _objShipment.Lieferaddress = _objDbController.GetLieferadressen(_objShipment.Order.LieferadressenID);
 
                 _objShipment.Address = _objDbController.GetAdress(_objShipment.Order.AdressenID);
                 if (_objShipment.Address == null)
-                    throw new ShipmentException(null, _strAssembly + ":" + strMethod + ": No Address found for addressenId=" + _objShipment.Order.AdressenID.ToString());
+                {
+                    var message = _strAssembly + ":" + strMethod + ": No Address found for addressenId=" + _objShipment.Order.AdressenID.ToString();
+                    new ShipmentException(null, message);
+                    throw new Exception(message);
+                }
 
                 _objShipment.OrderCountryCode = _objDbController.GetCountryCode(_objShipment.Order.LieferLand).MaxLength(2);
 
@@ -125,56 +179,32 @@ namespace ShipmentDHL
                     }
 
                     CreatePackages(_objShipment.Order.Gesamtgewicht, SettingController.Paket_Length, SettingController.Paket_Width, SettingController.Paket_Height);
-                    CreateShipment(true);
+                    return true;
                 }
                 else if (objPackageType.InternalId.Length >= 3)
                 {
                     //DHL Warenpost use with ID
                     _objShipment.DDProdCode = objPackageType.InternalId;
                     CreatePackages(1, "25", "15", "1");
-                    CreateShipment(false);
-                    Logger.Instance.Log(TraceEventType.Error, 0, _strAssembly + ":" + strMethod + ": ProductCode is " + _objShipment.DDProdCode);
+                    Logger.Instance.Log(TraceEventType.Information, 0, _strAssembly + ":" + strMethod + ": ProductCode is " + _objShipment.DDProdCode);
+                    return false;
                 }
                 else
                 {
-                    new ShipmentException(null, _strAssembly + ":" + strMethod + ": DHL ProductCode not found in config file " + strConfigFile + "!");
+                    var message = _strAssembly + ":" + strMethod + ": DHL ProductCode not found in config file " + strConfigFile + "!";
+                    new ShipmentException(null, message);
+                    throw new Exception(message);
                 }
 
 
             }
             catch (Exception objException)
             {
-                new ShipmentException(objException, _strAssembly + ":" + strMethod + ": Shipment could not be created!");
+                var message = _strAssembly + ":" + strMethod + ": Shipment could not be created!";
+                new ShipmentException(objException, message);
+                throw new Exception(message);
             }
 
-        }
-
-        private void CreateShipment(bool oldVersion)
-        {
-            string strMethod = MethodBase.GetCurrentMethod().Name;
-
-            try
-            {
-                var result = false;
-                if (oldVersion)
-                {
-                    result = new ShipmentRequestBuilderOld(_objDbController, _objShipment).CreateShipment();
-                }
-                else
-                {
-                    result = new ShipmentRequestBuilderNew(_objDbController, _objShipment).CreateShipment();
-                }
-
-                if (result)
-                {
-                    Logger.Instance.Log(TraceEventType.Information, 0, _strAssembly + ":" + strMethod + ": Printing labels ...");
-                    PrintLabels();
-                }
-            }
-            catch (Exception)
-            {
-                if (_strCmd.Equals("SHIP")) DeleteOldShipmentDD();
-            }
         }
 
         public void PrintSummary(string strDateBegin, string strDateEnd)
@@ -386,21 +416,23 @@ namespace ShipmentDHL
             }
         }
 
-        private void InitShipment()
+        private bool InitShipment()
         {
             string strMethod = MethodBase.GetCurrentMethod().Name;
 
             try
             {
-                CreateShipment();
+                var oldVersion = CreateShipment();
                 CreateReceiver();
                 CreateExportDocuments();
-
                 Logger.Instance.Log(TraceEventType.Information, 0, _strAssembly + ":" + strMethod + ": Ship request initialized successfull");
+                return oldVersion;
             }
             catch (Exception objException)
             {
-                throw new ShipmentException(objException, _strAssembly + ":" + strMethod + ": Error during ship request initialisation!");
+                var message = _strAssembly + ":" + strMethod + ": Error during ship request initialisation!";
+                new ShipmentException(objException, message);
+                throw new Exception(message);
             }
         }
 
@@ -506,7 +538,7 @@ namespace ShipmentDHL
             }
         }
 
-        private void PrintLabels()
+        private void PrintLabels(bool toLaserPrinter)
         {
             string strMethod = MethodBase.GetCurrentMethod().Name;
 
@@ -515,34 +547,43 @@ namespace ShipmentDHL
 
             try
             {
-                //print the first page to laser printer
-                bool bDesign = SettingController.LLDesign.Equals("1") ? true : false;
-                bool bPreview = SettingController.LLPreview.Equals("1") ? true : false;
+                if(toLaserPrinter)
+                {
+                    //print the first page to laser printer
+                    bool bDesign = SettingController.LLDesign.Equals("1") ? true : false;
+                    bool bPreview = SettingController.LLPreview.Equals("1") ? true : false;
 
-                if (File.Exists(SettingController.FileLLPdf))
-                {
-                    foreach (string strFile in _objShipment.DownloadedFiles)
-                        _objLL.DesignLLHtml(SettingController.FileLLPdf, strFile, bDesign, bPreview);
-                }
-                else
-                {
-                    if (_strCmd.Equals("SHIP")) DeleteOldShipmentDD();
-                    new ShipmentException(null, _strAssembly + ":" + strMethod + ": List and Label file " + SettingController.FileLLPdf + " not found!");
-                }
-
-                if (File.Exists(_objShipment.ExportDocumentDownloadedFile))
-                {
-                    if (File.Exists(SettingController.FileLLExportDocumentPdf))
+                    if (File.Exists(SettingController.FileLLPdf))
                     {
-                        _objLL.DesignLLHtml(SettingController.FileLLExportDocumentPdf, _objShipment.ExportDocumentDownloadedFile, bDesign, bPreview);
+                        foreach (string strFile in _objShipment.DownloadedFiles)
+                            _objLL.DesignLLHtml(SettingController.FileLLPdf, strFile, bDesign, bPreview);
                     }
                     else
                     {
                         if (_strCmd.Equals("SHIP")) DeleteOldShipmentDD();
-                        new ShipmentException(null, _strAssembly + ":" + strMethod + ": List and Label file " + SettingController.FileLLExportDocumentPdf + " not found!");
+                        new ShipmentException(null, _strAssembly + ":" + strMethod + ": List and Label file " + SettingController.FileLLPdf + " not found!");
+                    }
+
+                    if (File.Exists(_objShipment.ExportDocumentDownloadedFile))
+                    {
+                        if (File.Exists(SettingController.FileLLExportDocumentPdf))
+                        {
+                            _objLL.DesignLLHtml(SettingController.FileLLExportDocumentPdf, _objShipment.ExportDocumentDownloadedFile, bDesign, bPreview);
+                        }
+                        else
+                        {
+                            if (_strCmd.Equals("SHIP")) DeleteOldShipmentDD();
+                            new ShipmentException(null, _strAssembly + ":" + strMethod + ": List and Label file " + SettingController.FileLLExportDocumentPdf + " not found!");
+                        }
                     }
                 }
-
+                else
+                {
+                    foreach (string strFile in _objShipment.DownloadedFiles)
+                    {
+                        PrintDirectToLabel.PrintRaw(SettingController.LabelPrinter, strFile, _objShipment.Trackingnumber, Logger.Instance);
+                    }
+                }
             }
             catch (Exception objException)
             {

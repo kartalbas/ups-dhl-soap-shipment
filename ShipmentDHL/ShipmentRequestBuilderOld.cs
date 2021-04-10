@@ -8,6 +8,7 @@ using System.Reflection;
 using System.IO;
 using ShipmentDHL.ShipWebReference;
 using ShipmentLib.SoapDumper;
+using System.Net;
 
 namespace ShipmentDHL
 {
@@ -45,6 +46,11 @@ namespace ShipmentDHL
         {
             _objShipment = objShipment;
             _objDbController = objDbController;
+
+            ServicePointManager.ServerCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true;
+            ServicePointManager.Expect100Continue = true;
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
             InitRequest();
         }
 
@@ -78,14 +84,15 @@ namespace ShipmentDHL
                 int iNumRetriesAllowed = ShipmentTools.SafeParseInt(SettingController.Retries);
                 if (iNumRetriesAllowed < 2)
                 {
-                    Logger.Instance.Log(TraceEventType.Error, 0, _strAssembly + ":" + strMethod + ": Retry count is lower than 2!");
-                    return false;
+                    iNumRetriesAllowed = 3;
                 }
 
                 CreateShipmentDDRequest objRequest = CreateShipmentDDRequest();
                 CreateShipmentResponse objResponse = null;
 
-                for (int i = 0; i <= iNumRetriesAllowed; i++)
+#pragma warning disable CS0162 // Unreachable code detected
+                for (int index = 0; index <= iNumRetriesAllowed; index++)
+#pragma warning restore CS0162 // Unreachable code detected
                 {
                     objResponse = _objWebService.createShipmentDD(_objAuthentication, objRequest);
 
@@ -113,7 +120,9 @@ namespace ShipmentDHL
                     else
                     {
                         Logger.Instance.Log(TraceEventType.Error, 9999, _strAssembly + ":" + strMethod + ": Request end with Error : " + objResponse.status.StatusCode + "/" + objResponse.status.StatusMessage);
-                        throw new ShipmentException(null, ReadableException(objResponse, _strAssembly));
+                        var messageStatus = ReadableException(objResponse, _strAssembly);
+                        new ShipmentException(null, messageStatus);
+                        throw new Exception(messageStatus);
                     }
                 }
 
@@ -122,11 +131,15 @@ namespace ShipmentDHL
                 else
                     Logger.Instance.Log(TraceEventType.Error, 9999, _strAssembly + ":" + strMethod + ": Request end with Error : objResponse = null");
 
-                throw new ShipmentException(null, _strAssembly + ":" + strMethod + ": Create Shipping with Retry FAILED!!");
+                var message = _strAssembly + ":" + strMethod + ": Create Shipping with Retry FAILED!!";
+                new ShipmentException(null, message);
+                throw new Exception(message);
             }
             catch (Exception objException)
             {
-                throw new ShipmentException(objException, _strAssembly + ":" + strMethod + ": Exception during executing CREATEDD request to DHL service!");
+                var message = _strAssembly + ":" + strMethod + ": Exception during executing CREATEDD request to DHL service!";
+                new ShipmentException(objException, message);
+                throw new Exception(message);
             }
         }
 
@@ -136,12 +149,20 @@ namespace ShipmentDHL
 
             var cobjBelege = _objDbController.GetShippedOrders(DateTime.Today.AddDays(iDay), DateTime.Today.AddDays(iDay), "DHL");
             if (cobjBelege != null && cobjBelege.Count <= 0)
-                throw new ShipmentException(null, _strAssembly + ":" + strMethod + ": No Orders found to manifest for today!");
+            {
+                var message = _strAssembly + ":" + strMethod + ": No Orders found to manifest for today!";
+                new ShipmentException(null, message);
+                throw new Exception(message);
+            }
 
             List<string> cstrTrackingnumbers = cobjBelege.Select(a => a.Trackingnumbers).ToList<string>();
 
             if (cstrTrackingnumbers == null || cstrTrackingnumbers.Count == 0)
-                throw new ShipmentException(null, _strAssembly + ":" + strMethod + ": No Trackingnumbers are given!");
+            {
+                var message = _strAssembly + ":" + strMethod + ": No Trackingnumbers are given!";
+                new ShipmentException(null, message);
+                throw new Exception(message);
+            }
 
             DoManifestDDRequest objRequest = DoManifestDDRequest(cstrTrackingnumbers.ToArray());
 
@@ -168,16 +189,26 @@ namespace ShipmentDHL
                 else
                 {
                     if (objResponse == null)
-                        throw new ShipmentException(null, _strAssembly + ":" + strMethod + ": Exception during Manifest Data with objResponse = null!");
+                    {
+                        var message = _strAssembly + ":" + strMethod + ": Exception during Manifest Data with objResponse = null!";
+                        new ShipmentException(null, message);
+                        throw new Exception(message);
+                    }
                     else
-                        throw new ShipmentException(null, _strAssembly + ":" + strMethod + ": Exception during Manifest Data with Code/Error " + objResponse.Status.StatusCode + "/" + objResponse.Status.StatusMessage);
+                    {
+                        var message = _strAssembly + ":" + strMethod + ": Exception during Manifest Data with Code/Error " + objResponse.Status.StatusCode + "/" + objResponse.Status.StatusMessage;
+                        new ShipmentException(null, message);
+                        throw new Exception(message);
+                    }
                 }
 
                 return cobjManifests;
             }
             catch (Exception objException)
             {
-                throw new ShipmentException(objException, _strAssembly + ":" + strMethod + ": Exception during manifesting!");
+                var message = _strAssembly + ":" + strMethod + ": Exception during manifesting!";
+                new ShipmentException(objException, message);
+                throw new Exception(message);
             }
         }
 
@@ -209,20 +240,32 @@ namespace ShipmentDHL
                     }
                     else
                     {
-                        throw new ShipmentException(null, _strAssembly + ":" + strMethod + ": Exception during downloading Manifest Data with Code/Error " + objResponse.status.StatusCode + "/" + objResponse.status.StatusMessage);
+                        var message = _strAssembly + ":" + strMethod + ": Exception during downloading Manifest Data with Code/Error " + objResponse.status.StatusCode + "/" + objResponse.status.StatusMessage;
+                        new ShipmentException(null, message);
+                        throw new Exception(message);
                     }
                 }
                 else
                 {
                     if (objResponse == null)
-                        throw new ShipmentException(null, _strAssembly + ":" + strMethod + ": Exception during downloading Manifest Data with objResponse = null!");
+                    {
+                        var message = _strAssembly + ":" + strMethod + ": Exception during downloading Manifest Data with objResponse = null!";
+                        new ShipmentException(null, message);
+                        throw new Exception(message);
+                    }
                     else
-                        throw  new ShipmentException(null, _strAssembly + ":" + strMethod + ": Exception during downloading Manifest Data with Code/Error " + objResponse.status.StatusCode + "/" + objResponse.status.StatusMessage);
+                    {
+                        var message = _strAssembly + ":" + strMethod + ": Exception during downloading Manifest Data with Code/Error " + objResponse.status.StatusCode + "/" + objResponse.status.StatusMessage;
+                        new ShipmentException(null, message);
+                        throw new Exception(message);
+                    }
                 }
             }
             catch (Exception objException)
             {
-                throw new ShipmentException(objException, _strAssembly + ":" + strMethod + ": Exception during downloading Export Document!");
+                var message = _strAssembly + ":" + strMethod + ": Exception during downloading Export Document!";
+                new ShipmentException(objException, message);
+                throw new Exception(message);
             }
         }
 
@@ -237,7 +280,11 @@ namespace ShipmentDHL
                 DeleteShipmentResponse objResponse = _objWebService.deleteShipmentDD(_objAuthentication, objRequest);
 
                 if (objResponse == null)
-                    throw new ShipmentException(null, _strAssembly + ":" + strMethod + ": Delete request failed for trackingnumber " + _objShipment.Trackingnumber + " because objResponse = null!");
+                {
+                    var message = _strAssembly + ":" + strMethod + ": Delete request failed for trackingnumber " + _objShipment.Trackingnumber + " because objResponse = null!";
+                    new ShipmentException(null, message);
+                    throw new Exception(message);
+                }
 
                 Statusinformation status = objResponse.Status;
                 string statusMessage = status.StatusMessage;
@@ -255,7 +302,9 @@ namespace ShipmentDHL
             }
             catch (Exception objException)
             {
-                throw new ShipmentException(objException, _strAssembly + ":" + strMethod + ": Exception during executing DELETEDD request to DHL service!");
+                var message = _strAssembly + ":" + strMethod + ": Exception during executing DELETEDD request to DHL service!";
+                new ShipmentException(objException, message);
+                throw new Exception(message);
             }
         }
 
@@ -374,7 +423,14 @@ namespace ShipmentDHL
             if (_objShipment == null)
                 new ShipmentException(null, _strAssembly + ":" + strMethod + ": _objShipment is NULL!");
 
-            _objWebService = new SWSServicePortTypeClient("ShipmentServiceSOAP11port0");
+            if(SettingController.DHL_TestMode)
+            {
+                _objWebService = new SWSServicePortTypeClient("ShipmentServiceSOAP11portTestOld");
+            }
+            else
+            {
+                _objWebService = new SWSServicePortTypeClient("ShipmentServiceSOAP11portProdOld");
+            }
 
             _objWebService.Endpoint.Address = new System.ServiceModel.EndpointAddress(_objShipment.Endpoint);
             System.ServiceModel.BasicHttpBinding objBinding = new System.ServiceModel.BasicHttpBinding(System.ServiceModel.BasicHttpSecurityMode.Transport);

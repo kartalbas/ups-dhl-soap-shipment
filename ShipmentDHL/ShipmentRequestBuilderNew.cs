@@ -8,6 +8,7 @@ using System.IO;
 using ShipmentLib;
 using ShipmentLib.SoapDumper;
 using ShipmentDHL.ShipWebReference3;
+using System.Net;
 
 namespace ShipmentDHL
 {
@@ -17,11 +18,13 @@ namespace ShipmentDHL
         private GKV3XAPIServicePortTypeClient _objWebService;
         private AuthentificationType _objAuthentication;
         private DatabaseController _objDbController;
+        private CreateShipmentOrderRequestLabelResponseType _labelResponse;
 
         private string _strAssembly = Assembly.GetExecutingAssembly().GetName().Name;
         private string componentName;
         private bool isTraceRequestEnabled;
         private bool isTraceResponseEnabled;
+        private CreateShipmentOrderRequestLabelResponseType _downloadType;
 
         public bool IsTraceRequestEnabled
         {
@@ -41,10 +44,18 @@ namespace ShipmentDHL
             set { componentName = value; }
         }
 
-        public ShipmentRequestBuilderNew(DatabaseController objDbController, Shipment objShipment)
+        public ShipmentRequestBuilderNew(DatabaseController objDbController, Shipment objShipment, CreateShipmentOrderRequestLabelResponseType downloadType)
         {
             _objShipment = objShipment;
             _objDbController = objDbController;
+            _downloadType = downloadType;
+
+            ServicePointManager.ServerCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true;
+            ServicePointManager.Expect100Continue = true;
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
+            _labelResponse = downloadType;
+
             InitRequest();
         }
 
@@ -57,16 +68,19 @@ namespace ShipmentDHL
             try
             {
                 int iNumRetriesAllowed = ShipmentTools.SafeParseInt(SettingController.Retries);
+                Logger.Instance.Log(TraceEventType.Error, 0, _strAssembly + ": Retry times on failure " + iNumRetriesAllowed.ToString());
+
                 if (iNumRetriesAllowed < 2)
                 {
-                    Logger.Instance.Log(TraceEventType.Error, 0, _strAssembly + ":" + strMethod + ": Retry count is lower than 2!");
-                    return false;
+                    iNumRetriesAllowed = 3;
                 }
 
                 CreateShipmentOrderRequest objRequest = CreateShipmentOrderRequest(_objShipment.PackageCount);
                 CreateShipmentOrderResponse objResponse = null;
 
-                for (int i = 0; i <= iNumRetriesAllowed; i++)
+#pragma warning disable CS0162 // Unreachable code detected
+                for (int index = 0; index <= iNumRetriesAllowed; index++)
+#pragma warning restore CS0162 // Unreachable code detected
                 {
                     objResponse = _objWebService.createShipmentOrder(_objAuthentication, objRequest);
 
@@ -76,10 +90,18 @@ namespace ShipmentDHL
 
                         for(int iUrl=0; iUrl < objResponse.CreationState.Length; iUrl++)
                         {
-                            string strLabelUrl = objResponse.CreationState[iUrl].LabelData.Item;
-                            string strFile = Path.Combine(SettingController.DownloadFolder, iUrl.ToString() + "_" + _objShipment.Trackingnumber + "_" + SettingController.DHL_PDF_Filename);
-                            ShipmentTools.Download(strLabelUrl, strFile);
-                            _objShipment.DownloadedFiles.Add(strFile);
+                            if(_downloadType == CreateShipmentOrderRequestLabelResponseType.URL)
+                            {
+                                string strLabelUrl = objResponse.CreationState[iUrl].LabelData.Item;
+                                string strFile = Path.Combine(SettingController.DownloadFolder, iUrl.ToString() + "_" + _objShipment.Trackingnumber + "_" + SettingController.DHL_PDF_Filename);
+                                ShipmentTools.Download(strLabelUrl, strFile);
+                                _objShipment.DownloadedFiles.Add(strFile);
+                            }
+                            else if(_downloadType == CreateShipmentOrderRequestLabelResponseType.ZPL2)
+                            {
+                                string strLabelUrl = objResponse.CreationState[iUrl].LabelData.Item;
+                                _objShipment.DownloadedFiles.Add(strLabelUrl);
+                            }
                         }
 
                         if (!_objShipment.ExecutedByShipmentTests)
@@ -91,10 +113,17 @@ namespace ShipmentDHL
                     }
                     else
                     {
-
-                        Logger.Instance.Log(TraceEventType.Error, 9999, _strAssembly + ":" + strMethod + ": Request end with Error : " + objResponse.Status.statusCode + "/" + string.Join(",", objResponse.Status.statusMessage));
-
-                        throw new ShipmentException(null, ReadableException(objResponse, _strAssembly));
+                        var responseError = string.Empty;
+                        if(objResponse.CreationState.Count() > 0)
+                        {
+                            var messagesArray = objResponse.CreationState[0].LabelData.Status.statusMessage;
+                            responseError = string.Join(", ", messagesArray);
+                        }
+                        responseError = string.IsNullOrEmpty(responseError) ? objResponse.Status.statusText : responseError;
+                        Logger.Instance.Log(TraceEventType.Error, 9999, _strAssembly + ":" + strMethod + ": Request end with Error : " + objResponse.Status.statusCode + "/" + responseError);
+                        var messageStatus = ReadableException(objResponse, _strAssembly);
+                        new ShipmentException(null, messageStatus);
+                        throw new Exception(messageStatus);
                     }
                 }
 
@@ -103,11 +132,15 @@ namespace ShipmentDHL
                 else
                     Logger.Instance.Log(TraceEventType.Error, 9999, _strAssembly + ":" + strMethod + ": Request end with Error : objResponse = null" );
 
-                throw new ShipmentException(null, _strAssembly + ":" + strMethod + ": Create Shipping with Retry FAILED!!");
+                var message = _strAssembly + ":" + strMethod + ": Create Shipping with Retry FAILED!!";
+                new ShipmentException(null, message);
+                throw new Exception(message);
             }
             catch (Exception objException)
             {
-                throw new ShipmentException(objException, _strAssembly + ":" + strMethod + ": Exception during executing CREATEDD request to DHL service!");
+                var message = _strAssembly + ":" + strMethod + ": Exception during executing CreateShipment request to DHL service!";
+                new ShipmentException(objException, message);
+                throw new Exception(message);
             }
         }
 
@@ -166,39 +199,61 @@ namespace ShipmentDHL
         {
             string strMethod = MethodBase.GetCurrentMethod().Name;
 
-            if (_objShipment == null)
-                new ShipmentException(null, _strAssembly + ":" + strMethod + ": _objShipment is NULL!");
-
-            _objWebService = new GKV3XAPIServicePortTypeClient("ShipmentServiceSOAP11port0");
-            _objWebService.Endpoint.Address = new System.ServiceModel.EndpointAddress(_objShipment.Endpoint);
-            System.ServiceModel.BasicHttpBinding objBinding = new System.ServiceModel.BasicHttpBinding(System.ServiceModel.BasicHttpSecurityMode.Transport);
-            objBinding.Security.Transport.ClientCredentialType = System.ServiceModel.HttpClientCredentialType.Basic;
-            objBinding.MaxReceivedMessageSize = 10*1024*1024;
-            _objWebService.Endpoint.Binding = objBinding;
-
-            _objAuthentication = new AuthentificationType();
-
-            if (SettingController.DHL_TestMode)
+            try
             {
-                _objWebService.ClientCredentials.UserName.UserName = SettingController.DHL_CigUser;
-                _objWebService.ClientCredentials.UserName.Password = SettingController.DHL_CigPassword;
-                _objAuthentication.user = SettingController.DHL_IntraShipUser;
-                _objAuthentication.signature = SettingController.DHL_IntraShipPassword;
-            }
-            else
-            {
-                _objWebService.ClientCredentials.UserName.UserName = SettingController.DHL_ApplicationsID;
-                _objWebService.ClientCredentials.UserName.Password = SettingController.DHL_Applicationstoken;
-                _objAuthentication.user = SettingController.DHL_Username;
-                _objAuthentication.signature = SettingController.DHL_CigPassword;
-            }
+                if (_objShipment == null)
+                    new ShipmentException(null, _strAssembly + ":" + strMethod + ": _objShipment is NULL!");
 
+                if (SettingController.DHL_TestMode)
+                {
+                    _objWebService = new GKV3XAPIServicePortTypeClient("GKVAPISOAP11port01TestNew");
+                }
+                else
+                {
+                    _objWebService = new GKV3XAPIServicePortTypeClient("GKVAPISOAP11port01ProdNew");
+                }
+
+
+                _objWebService.Endpoint.Address = new System.ServiceModel.EndpointAddress(_objShipment.Endpoint);
+                System.ServiceModel.BasicHttpBinding objBinding = new System.ServiceModel.BasicHttpBinding(System.ServiceModel.BasicHttpSecurityMode.Transport);
+                objBinding.Security.Transport.ClientCredentialType = System.ServiceModel.HttpClientCredentialType.Basic;
+                objBinding.MaxReceivedMessageSize = 10 * 1024 * 1024;
+                _objWebService.Endpoint.Binding = objBinding;
+
+
+                _objAuthentication = new AuthentificationType();
+
+                if (SettingController.DHL_TestMode)
+                {
+                    _objWebService.ClientCredentials.UserName.UserName = SettingController.DHL_CigUser;
+                    _objWebService.ClientCredentials.UserName.Password = SettingController.DHL_CigPassword;
+                    _objAuthentication.user = SettingController.DHL_IntraShipUser;
+                    _objAuthentication.signature = SettingController.DHL_IntraShipPassword;
+                }
+                else
+                {
+                    _objWebService.ClientCredentials.UserName.UserName = "wegacell_api_3_1"; //SettingController.DHL_ApplicationsID;
+                    _objWebService.ClientCredentials.UserName.Password = "DRLImIdZcSLDTkaKAqnlBsfKmyxEzC"; // SettingController.DHL_Applicationstoken;
+                    _objAuthentication.user = SettingController.DHL_Username;
+                    _objAuthentication.signature = SettingController.DHL_CigPassword;
+                }
+            }
+            catch (Exception e)
+            {
+                Logger.Instance.Log(TraceEventType.Information, 0, _strAssembly + ":" + strMethod + ": " + e.Message);
+                new ShipmentException(e, e.Message);
+            }
         }
 
         private CreateShipmentOrderRequest CreateShipmentOrderRequest(int iCountOfPackages)
         {
+            Logger.Instance.Log(TraceEventType.Error, 0, _strAssembly + ": Count of Package" + iCountOfPackages.ToString());
+
             CreateShipmentOrderRequest createShipmentOrderRequest = new CreateShipmentOrderRequest();
-            createShipmentOrderRequest.labelResponseType = CreateShipmentOrderRequestLabelResponseType.ZPL2;
+            createShipmentOrderRequest.labelResponseType = _labelResponse;
+            createShipmentOrderRequest.labelResponseTypeSpecified = true;
+            //createShipmentOrderRequest.labelFormat = "";
+            //createShipmentOrderRequest.combinedPrinting = ""; 
             createShipmentOrderRequest.Version = CreateVersion();
 
             ShipmentOrderType[] shipmentOrderTypes = new ShipmentOrderType[iCountOfPackages];
@@ -245,8 +300,8 @@ namespace ShipmentDHL
             {
                 product = _objShipment.DDProdCode,
                 shipmentDate = DateTime.Today.ToString(_objShipment.SDF).MaxLength(10),
-                accountNumber = _objShipment.EKP,
-
+                //accountNumber = _objShipment.EKP, //"22222222226201"
+                accountNumber = "52294421496201", 
                 Notification = new ShipmentNotificationType
                 {
                     recipientEmailAddress = _objShipment.ReceiverContactEMail

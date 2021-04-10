@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Reflection;
 using System.Windows.Forms;
 
 namespace ShipmentLib
@@ -13,7 +12,6 @@ namespace ShipmentLib
 
         public ShipmentException(Exception objException, string strMessage) : base(strMessage)
         {
-            string strAssembly = Assembly.GetExecutingAssembly().GetName().Name;
             if (objException == null)
             {
                 Logger.Instance.Log(TraceEventType.Critical, 9999, strMessage);
@@ -36,7 +34,7 @@ namespace ShipmentLib
                 notePad.Start();
             }
 
-            System.Environment.Exit(-1);
+            Environment.Exit(-1);
         }    
     }
 }
