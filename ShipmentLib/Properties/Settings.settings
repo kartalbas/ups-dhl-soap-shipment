@@ -1,0 +1,279 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ShipmentLib.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="LaserPrinter" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">PrinterModel1</Value>
+    </Setting>
+    <Setting Name="LabelPrinter" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">PrinterModel2</Value>
+    </Setting>
+    <Setting Name="PackageTypeCode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">PackageCode</Value>
+    </Setting>
+    <Setting Name="ServiceNotificationCode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">NotificationCode</Value>
+    </Setting>
+    <Setting Name="ServiceDescription" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ServiceDescription</Value>
+    </Setting>
+    <Setting Name="CODAmountCurrencyCode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">CurrencyCode</Value>
+    </Setting>
+    <Setting Name="ShipUnitOfMeasurementTypeCode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">MeasurementCode</Value>
+    </Setting>
+    <Setting Name="ShipUnitOfMeasurementTypeDescription" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">MeasurementDescription</Value>
+    </Setting>
+    <Setting Name="LabelImageFormatCode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ImageFormat</Value>
+    </Setting>
+    <Setting Name="LabelStockSizeHeight" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">HeightValue</Value>
+    </Setting>
+    <Setting Name="LabelStockSizeWidth" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">WidthValue</Value>
+    </Setting>
+    <Setting Name="ShipperName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">CompanyName</Value>
+    </Setting>
+    <Setting Name="ShipperAttentionName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ContactPerson</Value>
+    </Setting>
+    <Setting Name="ShipperAddressLine" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">AddressLine</Value>
+    </Setting>
+    <Setting Name="ShipperCountryCode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">CountryCode</Value>
+    </Setting>
+    <Setting Name="ShipperPhoneNumber" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">PhoneNumber</Value>
+    </Setting>
+    <Setting Name="ShipperStateProvinceCode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ShipperEmail" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">EmailAddress</Value>
+    </Setting>
+    <Setting Name="ShipperFromName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">CompanyName</Value>
+    </Setting>
+    <Setting Name="ShipperFromAttentionName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ContactPerson</Value>
+    </Setting>
+    <Setting Name="ShipperFromAddressLine" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">AddressLine</Value>
+    </Setting>
+    <Setting Name="ShipperFromPostalCode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">PostalCode</Value>
+    </Setting>
+    <Setting Name="ShipperFromCity" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">CityName</Value>
+    </Setting>
+    <Setting Name="ShipperFromCountryCode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">CountryCode</Value>
+    </Setting>
+    <Setting Name="ShipperFromPhoneNumber" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">PhoneNumber</Value>
+    </Setting>
+    <Setting Name="ShipperFromStateProvinceCode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ShipperFromEmail" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">EmailAddress</Value>
+    </Setting>
+    <Setting Name="ShipperCity" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">CityName</Value>
+    </Setting>
+    <Setting Name="ShipperPostalCode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">PostalCode</Value>
+    </Setting>
+    <Setting Name="ShipmentChargeType" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ChargeType</Value>
+    </Setting>
+    <Setting Name="ShipmentDescription" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ShipmentDescription</Value>
+    </Setting>
+    <Setting Name="PrintBarcode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="UPS_ShippingModule_ShipWebReference_ShipService_Test" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://test.ups.com/webservices/Ship</Value>
+    </Setting>
+    <Setting Name="LLPreview" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="PrintTurnIn" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="UPS_ShippingModule_VoidWebReference_VoidService_Test" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://test.ups.com/webservices/Void</Value>
+    </Setting>
+    <Setting Name="OpenNotepadOnException" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="Retries" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
+    <Setting Name="DownloadFolder" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Downloads</Value>
+    </Setting>
+    <Setting Name="LogFolder" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Logs</Value>
+    </Setting>
+    <Setting Name="FileLLHtml" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Reports\PrintHtml.lst</Value>
+    </Setting>
+    <Setting Name="FileLLSummaryUPS" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Reports\PrintSummaryUPS.lst</Value>
+    </Setting>
+    <Setting Name="DHL_ShippingModule_ShipWebReference_ShipService_Test" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://test.dhl.com/soap</Value>
+    </Setting>
+    <Setting Name="UPS_AccessLicenseNumber" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">AccessLicenseNumber</Value>
+    </Setting>
+    <Setting Name="UPS_Username" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Username</Value>
+    </Setting>
+    <Setting Name="UPS_Password" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Password</Value>
+    </Setting>
+    <Setting Name="DHL_IntraShipUser" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">DHLUser</Value>
+    </Setting>
+    <Setting Name="DHL_IntraShipPassword" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">DHLPassword</Value>
+    </Setting>
+    <Setting Name="DHL_CigUser" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">CigUser</Value>
+    </Setting>
+    <Setting Name="DHL_CigPassword" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">CigPassword</Value>
+    </Setting>
+    <Setting Name="ShipperStreet" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">StreetName</Value>
+    </Setting>
+    <Setting Name="ShipperStreetNr" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">StreetNumber</Value>
+    </Setting>
+    <Setting Name="DHL_EKP_Prod" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">EKPProduction</Value>
+    </Setting>
+    <Setting Name="Shipper_VATID" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">VATID</Value>
+    </Setting>
+    <Setting Name="DHL_ShippingModule_ShipWebReference_ShipService_Prod" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://prod.dhl.com/soap</Value>
+    </Setting>
+    <Setting Name="DHL_EKP_Test" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">EKPTest</Value>
+    </Setting>
+    <Setting Name="DHL_Username" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">DHLUsername</Value>
+    </Setting>
+    <Setting Name="DHL_ApplicationsID" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ApplicationID</Value>
+    </Setting>
+    <Setting Name="DHL_Applicationstoken" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ApplicationToken</Value>
+    </Setting>
+    <Setting Name="ShipperAccountOwner" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">AccountOwner</Value>
+    </Setting>
+    <Setting Name="ShipperAccountNumber" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">AccountNumber</Value>
+    </Setting>
+    <Setting Name="ShipperBankCode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">BankCode</Value>
+    </Setting>
+    <Setting Name="ShipperBankName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">BankName</Value>
+    </Setting>
+    <Setting Name="ShipperIban" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">IBAN</Value>
+    </Setting>
+    <Setting Name="ShipperBic" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">BIC</Value>
+    </Setting>
+    <Setting Name="DHL_TestMode" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="Paket_Length" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">LengthValue</Value>
+    </Setting>
+    <Setting Name="Paket_Width" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">WidthValue</Value>
+    </Setting>
+    <Setting Name="Paket_Height" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">HeightValue</Value>
+    </Setting>
+    <Setting Name="FileLLPdf" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Reports\PrintPdf.lst</Value>
+    </Setting>
+    <Setting Name="DatabaseCulture" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">CultureCode</Value>
+    </Setting>
+    <Setting Name="DHL_PDF_Filename" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">DHLFileName.pdf</Value>
+    </Setting>
+    <Setting Name="DHL_PartnerID" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">PartnerID</Value>
+    </Setting>
+    <Setting Name="DHL_ExportDocument_Filename" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ExportDoc.pdf</Value>
+    </Setting>
+    <Setting Name="FileLLExportDocumentPdf" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Reports\PrintExportDocPdf.lst</Value>
+    </Setting>
+    <Setting Name="UPS_ShippingModule_ShipWebReference_ShipService_Prod" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://prod.ups.com/webservices/Ship</Value>
+    </Setting>
+    <Setting Name="UPS_ShippingModule_VoidWebReference_VoidService_Prod" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://prod.ups.com/webservices/Void</Value>
+    </Setting>
+    <Setting Name="UPS_TestMode" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="FileLLPic" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Reports\PrintPic.lst</Value>
+    </Setting>
+    <Setting Name="LLLicenseInfo" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">LicenseInfo</Value>
+    </Setting>
+    <Setting Name="LLDesign" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="FileLLListUPS" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Reports\PrintListUPS.lst</Value>
+    </Setting>
+    <Setting Name="FileLLListDHL" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Reports\PrintListDHL.lst</Value>
+    </Setting>
+    <Setting Name="FileLLSummaryDHL" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Reports\PrintSummaryDHL.lst</Value>
+    </Setting>
+    <Setting Name="DHL_Manifest_Filename" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Manifest.pdf</Value>
+    </Setting>
+    <Setting Name="FileLLManifestedDHL" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Reports\PrintManifestedDHL.lst</Value>
+    </Setting>
+    <Setting Name="DHL_PartnerCode_NAT" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">PartnerCodeNAT</Value>
+    </Setting>
+    <Setting Name="DHL_PartnerCode_INT" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">PartnerCodeINT</Value>
+    </Setting>
+    <Setting Name="DHL_PartnerCode_BP_INT" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">PartnerCodeBPINT</Value>
+    </Setting>
+    <Setting Name="DHL_PartnerCode_TestMode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">PartnerCodeTestMode</Value>
+    </Setting>
+    <Setting Name="PauschalBetrag" Type="System.Double" Scope="Application">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

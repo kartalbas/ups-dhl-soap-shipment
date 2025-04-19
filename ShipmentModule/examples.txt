@@ -1,0 +1,31 @@
+UPS:
+
+** Generiere Trackingnummer f�r Rechnung 123123
+ --mode=1 --cmd=SHIP --number=123123
+
+** Lösche Trackingnummer 1Z234234234234234
+ --mode=1 --cmd=DELETE --number=1Z234234234234234
+
+** Erstelle ein Report f�r den Tag 08.01.2016
+ --mode=1 --cmd=REPORT --datebegin=08.01.2016 --dateend=08.01.2016
+
+DHL:
+** Generiere Trackingnummer f�r Rechnung 123123
+ --mode=2 --cmd=SHIP --number=1331076
+
+** Lösche Trackingnummer 1Z234234234234234
+ --mode=2 --cmd=DELETE --number=1Z234234234234234
+
+** Erstelle ein Report f�r den Tag 08.01.2016
+ --mode=2 --cmd=REPORT --datebegin=08.01.2016 --dateend=08.01.2016
+
+** Manifestiere alle Trackingnummer f�r den Tag von heute
+ --mode=2 --cmd=DOMANIFEST
+
+** Hole alle Manifestierte Trackingnummer
+ --mode=2 --cmd=GETMANIFEST --datebegin=08.01.2016 --dateend=08.01.2016
+
+
+
+
+

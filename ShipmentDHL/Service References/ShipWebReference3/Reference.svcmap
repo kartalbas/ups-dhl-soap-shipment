@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="64355fa8-8eac-4013-b5b6-c4663ce74524" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="D:\repos\shipment\Externals\DHL\geschaeftskundenversand-api-3.1.4.wsdl" Protocol="file" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="geschaeftskundenversand-api-3.xsd" MetadataType="Schema" ID="d7571fde-1e56-4ebe-a327-eed01e72e00d" SourceId="1" SourceUrl="file:///D:/repos/shipment/Externals/DHL/geschaeftskundenversand-api-3.1.4-schema-bcs_base.xsd" />
+    <MetadataFile FileName="geschaeftskundenversand-api-3.wsdl" MetadataType="Wsdl" ID="d08bd665-3478-4eec-a460-3f6a3a2d98d6" SourceId="1" SourceUrl="file:///D:/repos/shipment/Externals/DHL/geschaeftskundenversand-api-3.1.4.wsdl" />
+    <MetadataFile FileName="geschaeftskundenversand-api-31.xsd" MetadataType="Schema" ID="efd6d77b-74e1-44b7-beeb-519226352935" SourceId="1" SourceUrl="file:///D:/repos/shipment/Externals/DHL/geschaeftskundenversand-api-3.1.4-schema-cis_base.xsd" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
