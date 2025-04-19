@@ -28,5 +28,10 @@ A utility tool for:
 
 ## License
 
-This project is licensed under the Business Source License 1.1 (BSL 1.1).  
-See the [LICENSE](./LICENSE) file for details.
+This project is licensed under the **Business Source License 1.1 (BSL 1.1)**. Under this license:
+
+- The source code is available for personal and non-commercial use.
+- Commercial use by companies requires a separate commercial license.
+- After a specified change date, the code will be made available under the Apache 2.0 License.
+
+For more details, refer to the [LICENSE](LICENSE) file.
